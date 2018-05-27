@@ -14,5 +14,5 @@ import org.springframework.stereotype.Repository;
 public interface ProductRepository extends JpaRepository<Product, Long> {
 
 //    @Query("SELECT p from Product p where lower(p.productName) = lower(:name)")
-    Product findByOrganizationName(/*@Param("name")*/ final String name);
+    Product findByProductName(/*@Param("name")*/ final String name);
 }

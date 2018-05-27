@@ -50,7 +50,7 @@ public class OrganizationService {
         organizationRepository.save(organization);
     }
 
-    public Set<Product> getProductNameList(final String organizationName) {
+    public Set<Product> getProductList(final String organizationName) {
         Organization organization = organizationRepository.findByOrganizationName(organizationName);
 
         return organization.getProductList();

@@ -83,9 +83,9 @@ public class SuperAdminController {
 
     @PostMapping("/all_organization")
     public String getProductsNames(@RequestParam("organizationName") final String organizationName, final Model model) {
-        Set<Product> productNameList = organizationService.getProductNameList(organizationName);
+        Set<Product> productList = organizationService.getProductList(organizationName);
 
-        model.addAttribute("productsList", productNameList);
+        model.addAttribute("productsList", productList);
 
         return "redirect:/all_products";
     }

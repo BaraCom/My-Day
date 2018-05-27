@@ -18,7 +18,7 @@ public class ProductService {
         Product product;
 
         if (isExistProductName(productName)) {
-            product = productRepository.findByOrganizationName(productName);
+            product = productRepository.findByProductName(productName);
         } else {
             product = new Product();
         }
@@ -29,8 +29,8 @@ public class ProductService {
         product.setPriceL(priceL);
     }
 
-    public Product findByOrganizationName(final String name) {
-        return productRepository.findByOrganizationName(name);
+    public Product findByProductName(final String name) {
+        return productRepository.findByProductName(name);
     }
 
     private boolean isExistProductName(final String name) {
