@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/fragments/header :: head"></head>
+    <body>
+        <nav th:replace="/fragments/navbar :: navbar"/>
+
+        <table class="table table-sm mt-1 table-light">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Login</th>
+                    <th scope="col">Password</th>
+                    <th scope="col">Mail</th>
+                    <th scope="col">Phone</th>
+                    <th scope="col">Role</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Products</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="organizationsList : ${organizations}">
+                    <th scope="row" th:text="${organizationsList.getId()}"/>
+                    <td th:text="${organizationsList.getOrganizationName()}"/>
+                    <td th:text="${organizationsList.getLogin()}"/>
+                    <td th:text="${organizationsList.getPassword()}"/>
+                    <td th:text="${organizationsList.getMail()}"/>
+                    <td th:text="${organizationsList.getPhone()}"/>
+                    <td th:text="${organizationsList.getRole()}"/>
+                    <td>
+                        <div class="dropdown">
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Dropdown
+                            </button>
+                            <div class="dropdown-menu w-250" aria-labelledby="dropdownMenu2">
+                                <p th:text="${organizationsList.getDescription()}"/>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <form method="post" th:action="@{/super_admin/all_organization}">
+                            <input type="hidden" name="organizationName" th:value="${organizationsList.getOrganizationName()}"/>
+                            <!--<a th:name="${organizationsList.getOrganizationName()}" href="#">See product list</a>-->
+                            <button type="submit" class="btn btn-info">See product list</button>
+                        </form>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </body>
+</html>

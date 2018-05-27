@@ -1,0 +1,45 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: head"></head>
+<body>
+    <nav th:replace="/fragments/navbar :: navbar"/>
+    <div class="container">
+        <!--<h3 class="admin_name">Hello, [[${#httpServletRequest.remoteUser}]]!</h3>-->
+        <form method="post">
+            <div class="row">
+                <div class="col-2">
+                    <a href="/add_product">Add product</a>
+                </div>
+                <div class="col-2">
+                    <a href=""></a>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col-2 mt-2">
+                <p th:text="Organization"/>
+            </div>
+            <div class="col-2 mt-2">
+                <p th:text="Product"/>
+            </div>
+            <div class="col-2 mt-2">
+                <text>Price S</text>
+            </div>
+            <div class="col-2 mt-2">
+                <text>Price M</text>
+            </div>
+            <div class="col-2 mt-2">
+                <text>Price L</text>
+            </div>
+        </div>
+        <div class="row" th:each="product : ${products}">
+            <div class="col-2 mt-2">
+                <!--<span th:text="${product.getOrganisation()}"/>-->
+            </div>
+            <div class="col-2 mt-2">
+                <span th:text="${product.getProductName()}"/>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

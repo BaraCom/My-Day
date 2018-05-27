@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="/fragments/header :: head"></head>
+<body>
+<div class="container">
+    Add new User
+    <div th:if="${message}">
+        <p th:text="${message}"/>
+    </div>
+    <form th:action="@{/registration}" method="post">
+        <div>
+            <label>
+                User Name <input type="text" name="username" placeholder="Enter your login"/>
+            </label>
+        </div>
+        <div>
+            <label>
+                Password <input type="password" name="password" placeholder="Enter your password"/>
+            </label>
+        </div>
+        <div>
+            <input type="submit" value="Sing In"/>
+        </div>
+    </form>
+</div>
+</body>
+</html>

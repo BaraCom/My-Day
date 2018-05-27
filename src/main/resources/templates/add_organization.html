@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+        <head th:replace="/fragments/header :: head"></head>
+        <body>
+        <nav th:replace="/fragments/navbar :: navbar"/>
+
+        <div class="container border border-success p-3">
+            <form class="was-validated" method="post" th:action="@{/super_admin/add}">
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom01">Organization name</label>
+                        <input name="organizationName" type="text" class="form-control" id="validationCustom01" placeholder="Organization name" required>
+                        <div class="invalid-feedback">
+                            Please, entry is correct organization name!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom02">Product name</label>
+                        <input name="productName" type="text" class="form-control" id="validationCustom02" placeholder="Product name" required>
+                        <div class="invalid-feedback">
+                            Please, entry is correct product name!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom03">Login</label>
+                        <input name="login" type="text" class="form-control" id="validationCustom03" placeholder="Login" required>
+                        <div class="invalid-feedback">
+                            Please, entry is correct Login!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom04">Password</label>
+                        <input name="password" type="text" class="form-control" id="validationCustom04" placeholder="Password" required>
+                        <div class="invalid-feedback">
+                            Please, entry is correct password!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom05">Mail</label>
+                        <input name="mail" type="text" class="form-control" id="validationCustom05" placeholder="Mail" required>
+                        <div class="invalid-feedback">
+                            Please, entry is correct mail!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom06">Phone</label>
+                        <input name="phone" type="text" class="form-control" id="validationCustom06" placeholder="Phone" required>
+                        <div class="invalid-feedback">
+                            Please, entry is correct phone!
+                        </div>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label for="validationCustom07">Description</label>
+                        <textarea name="description" type="text" class="form-control" id="validationCustom07" placeholder="Description" required></textarea>
+                        <div class="invalid-feedback">
+                            Please,write a description!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-4 mb-3">
+                        <select name="role" class="custom-select" id="validationCustom08">
+                            <option selected>Choose...</option>
+                            <option th:each="roleList : ${rolesList}" th:text="${roleList}"/>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-outline-success">Success</button>
+            </form>
+        </div>
+    </body>
+</html>
