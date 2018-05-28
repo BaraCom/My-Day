@@ -5,9 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 /**
@@ -28,8 +26,7 @@ public class Organization {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY/*, generator = "organization"*/)
-//    @SequenceGenerator(name="organization", sequenceName="organization_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "organization_name", length = 50, nullable = false)

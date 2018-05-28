@@ -1,10 +1,12 @@
 package com.bkolomiets.www.products.service;
 
+import com.bkolomiets.www.organization.domain.Organization;
+import com.bkolomiets.www.organization.repository.OrganizationRepository;
 import com.bkolomiets.www.products.domain.Product;
-import com.bkolomiets.www.products.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.Set;
 
 /**
  * @author Borislav Kolomiets
@@ -12,31 +14,10 @@ import org.springframework.stereotype.Service;
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductService {
-    private final ProductRepository productRepository;
+    private final OrganizationRepository organizationRepository;
 
-    public void add(final String productName, final Double priceS, final Double priceM, final Double priceL) {
-        Product product;
-
-        if (isExistProductName(productName)) {
-            product = productRepository.findByProductName(productName);
-        } else {
-            product = new Product();
-        }
-
-        product.setProductName(productName);
-        product.setPriceS(priceS);
-        product.setPriceM(priceM);
-        product.setPriceL(priceL);
-    }
-
-    public Product findByProductName(final String name) {
-        return productRepository.findByProductName(name);
-    }
-
-    private boolean isExistProductName(final String name) {
-        return productRepository.findAll()
-                                .stream()
-                                .anyMatch(x -> x.getProductName().equalsIgnoreCase(name)
-        );
+    public Set<Product> getProductByOrganizationName(final String organizationName) {
+        Organization organization = organizationRepository.findByOrganizationName(organizationName);
+        return organization.getProductList();
     }
 }

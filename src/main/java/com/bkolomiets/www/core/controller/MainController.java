@@ -10,7 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestParam;
 import java.util.Collections;
 
 /**
@@ -33,11 +33,16 @@ public class MainController {
     }
 
     @PostMapping("/registration")
-    public String addUser(final User user, final Model model) {
+    public String addUser(@RequestParam("repeatPassword") final String repeatPassword, final User user, final Model model) {
         User userName = userRepository.findByUsername(user.getUsername());
 
+        if (!repeatPassword.equals(user.getPassword())) {
+            model.addAttribute("notEqualsPass", "Passwords id not equals!");
+            return "/registration";
+        }
+
         if (userName != null) {
-            model.addAttribute("message", "User is exists!");
+            model.addAttribute("userExists", "User is exists!");
             return "/registration";
         }
 

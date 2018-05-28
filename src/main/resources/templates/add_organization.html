@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-        <head th:replace="/fragments/header :: head"></head>
-        <body>
+    <head th:replace="/fragments/header :: head"/>
+    <body>
         <nav th:replace="/fragments/navbar :: navbar"/>
 
         <div class="container border border-success p-3">
@@ -21,9 +21,11 @@
                             Please, entry is correct product name!
                         </div>
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationCustom03">Login</label>
-                        <input name="login" type="text" class="form-control" id="validationCustom03" placeholder="Login" required>
+                        <input name="username" type="text" class="form-control" id="validationCustom03" placeholder="Login" required>
                         <div class="invalid-feedback">
                             Please, entry is correct Login!
                         </div>
@@ -51,6 +53,8 @@
                             Please, entry is correct phone!
                         </div>
                     </div>
+                </div>
+                <div class="form-row">
                     <div class="col-md-4 mb-3">
                         <label for="validationCustom07">Description</label>
                         <textarea name="description" type="text" class="form-control" id="validationCustom07" placeholder="Description" required></textarea>
@@ -68,7 +72,9 @@
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-outline-success">Success</button>
+                <button type="submit" class="btn btn-outline-success">
+                    Add
+                </button>
             </form>
         </div>
     </body>

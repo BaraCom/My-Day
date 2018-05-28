@@ -14,4 +14,6 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
 //    @Query("SELECT o from Organization o where lower(o.organizationName) = lower(:name)")
     Organization findByOrganizationName(/*@Param("name") */final String name);
+
+    Organization findByPassword(final String password);
 }

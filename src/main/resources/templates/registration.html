@@ -1,27 +1,33 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="/fragments/header :: head"></head>
-<body>
-<div class="container">
-    Add new User
-    <div th:if="${message}">
-        <p th:text="${message}"/>
-    </div>
-    <form th:action="@{/registration}" method="post">
-        <div>
-            <label>
-                User Name <input type="text" name="username" placeholder="Enter your login"/>
-            </label>
+    <head th:replace="/fragments/header :: head"/>
+    <body>
+        <div class="container">
+            Registration
+            <div th:if="${userExists}">
+                <p th:text="${userExists}"/>
+            </div>
+            <div th:if="${notEqualsPass}">
+                <p th:text="${notEqualsPass}"/>
+            </div>
+
+            <form th:action="@{/registration}" method="post">
+                <div class="form-group col-3">
+                    <input type="text" name="username" class="form-control" placeholder="Login">
+                </div>
+                <div class="form-group col-3">
+                    <input type="text" name="password" class="form-control" placeholder="Password">
+                </div>
+                <div class="form-group col-3">
+                    <input type="text" name="repeatPassword" class="form-control" placeholder="Repeat password">
+                </div>
+
+                <div class="form-group col-3 inline">
+                    <button type="submit" class="btn btn-success btn-sm">
+                        Registration
+                    </button>
+                </div>
+            </form>
         </div>
-        <div>
-            <label>
-                Password <input type="password" name="password" placeholder="Enter your password"/>
-            </label>
-        </div>
-        <div>
-            <input type="submit" value="Sing In"/>
-        </div>
-    </form>
-</div>
-</body>
+    </body>
 </html>

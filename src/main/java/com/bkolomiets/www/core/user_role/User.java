@@ -15,8 +15,7 @@ import java.util.Set;
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY/*, generator = "user"*/)
-//    @SequenceGenerator(name="user", sequenceName="user_id_seq")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "user_name")
@@ -24,6 +23,7 @@ public class User {
 
     @Column(name = "password")
     private String password;
+
     private boolean active;
 
     @ElementCollection(targetClass = Role.class, fetch = FetchType.LAZY)

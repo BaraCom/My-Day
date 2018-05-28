@@ -3,18 +3,10 @@ package com.bkolomiets.www.organization.service;
 import com.bkolomiets.www.organization.domain.Organization;
 import com.bkolomiets.www.organization.repository.OrganizationRepository;
 import com.bkolomiets.www.products.domain.Product;
-import com.bkolomiets.www.products.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Stream;
-
-import static java.lang.Boolean.parseBoolean;
 
 /**
  * @author Borislav Kolomiets
@@ -50,14 +42,12 @@ public class OrganizationService {
         organizationRepository.save(organization);
     }
 
-    public Set<Product> getProductList(final String organizationName) {
-        Organization organization = organizationRepository.findByOrganizationName(organizationName);
-
-        return organization.getProductList();
-    }
-
     public List<Organization> getOrganizationList() {
         return organizationRepository.findAll();
+    }
+
+    public Organization findByPassword(final String password) {
+        return organizationRepository.findByPassword(password);
     }
 
     private boolean isExistOrganizationName(final String name) {
@@ -67,6 +57,6 @@ public class OrganizationService {
     }
 
     private Product createClearProductByOrganization(final String productName) {
-        return new Product(productName, 0D, 0D, 0D);
+        return new Product(productName, 0D, 0D, 0D, " - ");
     }
 }

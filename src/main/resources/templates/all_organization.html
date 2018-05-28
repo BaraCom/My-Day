@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-    <head th:replace="/fragments/header :: head"></head>
+    <head th:replace="/fragments/header :: head"/>
     <body>
         <nav th:replace="/fragments/navbar :: navbar"/>
 
@@ -30,7 +30,7 @@
                     <td>
                         <div class="dropdown">
                             <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Dropdown
+                                Description
                             </button>
                             <div class="dropdown-menu w-250" aria-labelledby="dropdownMenu2">
                                 <p th:text="${organizationsList.getDescription()}"/>
@@ -38,11 +38,27 @@
                         </div>
                     </td>
                     <td>
-                        <form method="post" th:action="@{/super_admin/all_organization}">
-                            <input type="hidden" name="organizationName" th:value="${organizationsList.getOrganizationName()}"/>
-                            <!--<a th:name="${organizationsList.getOrganizationName()}" href="#">See product list</a>-->
-                            <button type="submit" class="btn btn-info">See product list</button>
-                        </form>
+                        <div class="dropdown">
+                            <button class="btn btn-info dropdown-toggle" type="button" id="dropdownMenu3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Products list
+                            </button>
+                            <div class="dropdown-menu w-250" aria-labelledby="dropdownMenu2">
+                                <table class="table table-sm mt-1 table-light">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">#</th>
+                                            <th scope="col">Product name</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="products : ${organizationsList.getProductList()}">
+                                            <th scope="row" th:text="${products.getId()}"/>
+                                            <td th:text="${products.getProductName()}"/>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </td>
                 </tr>
             </tbody>
