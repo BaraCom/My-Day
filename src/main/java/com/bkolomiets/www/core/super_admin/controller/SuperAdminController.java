@@ -1,6 +1,7 @@
 package com.bkolomiets.www.core.super_admin.controller;
 
 import com.bkolomiets.www.core.repository.IUserRepository;
+import com.bkolomiets.www.core.service.MainService;
 import com.bkolomiets.www.core.super_admin.service.SuperAdminService;
 import com.bkolomiets.www.core.user_role.Role;
 import com.bkolomiets.www.core.user_role.User;
@@ -17,6 +18,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collections;
 import java.util.List;
+
+import static com.bkolomiets.www.core.service.MainService.getLogButtonByRole;
+import static com.bkolomiets.www.core.service.MainService.getNavBarByRole;
 import static com.bkolomiets.www.core.super_admin.service.SuperAdminService.getAppRoles;
 
 /**
@@ -35,7 +39,8 @@ public class SuperAdminController {
         int quantityOrganization = organizationList.size();
 
         model.addAttribute("quantityOrganization", quantityOrganization);
-        model.addAttribute("navBarItems", SuperAdminService.getNavMenuItem());
+        model.addAttribute("navItems", getNavBarByRole());
+        model.addAttribute("isLogged", getLogButtonByRole());
 
         return "super_admin";
     }
@@ -51,7 +56,8 @@ public class SuperAdminController {
         int quantityOrganization = organizationList.size();
 
         model.addAttribute("quantityOrganization", quantityOrganization);
-        model.addAttribute("navBarItems", SuperAdminService.getNavMenuItem());
+        model.addAttribute("navItems", getNavBarByRole());
+        model.addAttribute("isLogged", MainService.getLogButtonByRole());
         model.addAttribute("rolesList", getAppRoles());
 
         return "add_organization";
@@ -82,7 +88,8 @@ public class SuperAdminController {
 
         model.addAttribute("organizations", organizationList);
         model.addAttribute("quantityOrganization", organizationList.size());
-        model.addAttribute("navBarItems", SuperAdminService.getNavMenuItem());
+        model.addAttribute("navItems", getNavBarByRole());
+        model.addAttribute("isLogged", MainService.getLogButtonByRole());
 
         return "/all_organization";
     }

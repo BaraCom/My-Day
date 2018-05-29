@@ -13,7 +13,7 @@ import static org.springframework.security.core.context.SecurityContextHolder.ge
 @Service
 public class SuperAdminService {
 
-    public static Map<String, String> getNavMenuItem() {
+    /*public static Map<String, String> getNavMenuItem() {
         Map<String, String> superAdminItems = new HashMap<>();
         superAdminItems.put("/super_admin/add", "Add organization");
         superAdminItems.put("/super_admin/all_organization", "All organization");
@@ -28,7 +28,7 @@ public class SuperAdminService {
         } else {
             return null;
         }
-    }
+    }*/
 
     public static List<String> getAppRoles() {
         List<String> rolesList = new ArrayList<>();
@@ -41,11 +41,11 @@ public class SuperAdminService {
         return rolesList;
     }
 
-    private static boolean isSameRoleName(final Role role) {
-        return getRoles().stream().anyMatch(a -> a.getAuthority().equals(role.name()));
-    }
+//    private static boolean isSameRoleName(final Role role) {
+//        return getRoles().stream().anyMatch(a -> a.getAuthority().equals(role.name()));
+//    }
 
-    private static Collection<? extends GrantedAuthority> getRoles() {
-        return getContext().getAuthentication().getAuthorities();
-    }
+//    private static Collection<? extends GrantedAuthority> getRoles() {
+//        return getContext().getAuthentication().getAuthorities();
+//    }
 }
