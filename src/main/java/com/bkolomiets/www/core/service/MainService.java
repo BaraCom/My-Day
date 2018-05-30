@@ -3,9 +3,7 @@ package com.bkolomiets.www.core.service;
 import com.bkolomiets.www.core.user_role.Role;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
-
 import java.util.*;
-
 import static org.springframework.security.core.context.SecurityContextHolder.getContext;
 
 /**
@@ -22,7 +20,7 @@ public class MainService {
         } else if (isSameRoleName(Role.SUPER_ADMIN)) {
             return getSuperAdminNavBar();
         }else {
-            return null;
+            return getAnonymousNavBar();
         }
     }
 
@@ -32,13 +30,15 @@ public class MainService {
 
     private static Map<String, String> getUserNavBar() {
         Map<String,String> userItems = new HashMap<>();
-        userItems.put("/registration", "Registration");
+        userItems.put("/", "Home");
+        userItems.put("#", "My purchases");
 
         return userItems;
     }
 
     private static Map<String, String> getAdminNavBar() {
         Map<String, String> adminItems = new HashMap<>();
+        adminItems.put("/", "Home");
         adminItems.put("/add_product", "Add product");
 
         return adminItems;
@@ -46,9 +46,17 @@ public class MainService {
 
     private static Map<String, String> getSuperAdminNavBar() {
         Map<String, String> superAdminItems = new HashMap<>();
+        superAdminItems.put("/", "Home");
         superAdminItems.put("/add_organization", "Add organization");
 
         return superAdminItems;
+    }
+
+    private static Map<String, String> getAnonymousNavBar() {
+        Map<String, String> anonymousItems = new HashMap<>();
+        anonymousItems.put("/", "Home");
+
+        return anonymousItems;
     }
 
     private static boolean isSameRoleName(final Role role) {

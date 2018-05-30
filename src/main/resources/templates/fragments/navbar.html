@@ -10,14 +10,17 @@
                 <a class="nav-link" th:href="${nav.getKey()}" th:text="${nav.getValue()}"/>
             </li>
         </ul>
-        <h5 class="form-inline mx-2 my-lg-0">
-            Hello, [[${#httpServletRequest.remoteUser}]]!
-        </h5>
+        <div th:if="${isLogged}">
+            <h5 class="form-inline mx-2 my-lg-0">
+                Hello, [[${#httpServletRequest.remoteUser}]]!
+            </h5>
+        </div>
         <div th:if="${isLogged}">
             <form th:replace="/fragments/logout :: loginout"/>
         </div>
         <div th:if="${!isLogged}">
-            <a class="nav-link active" href="/registration">Sing In</a>
+            <a href="/registration">Registration</a>
+            <a href="/login">Sing In</a>
         </div>
     </div>
 </nav>

@@ -2,6 +2,8 @@
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="/fragments/header :: head"/>
     <body>
+        <nav th:replace="/fragments/navbar :: navbar"/>
+
         <div class="container">
             Registration
             <div th:if="${userExists}">
