@@ -28,6 +28,10 @@ public class MainService {
         return isSameRoleName(Role.USER) || isSameRoleName(Role.ADMIN) || isSameRoleName(Role.SUPER_ADMIN);
     }
 
+    public static boolean isSameRoleName(final Role role) {
+        return getRoles().stream().anyMatch(a -> a.getAuthority().equals(role.name()));
+    }
+
     private static Map<String, String> getUserNavBar() {
         Map<String,String> userItems = new HashMap<>();
         userItems.put("/", "Home");
@@ -40,6 +44,8 @@ public class MainService {
         Map<String, String> adminItems = new HashMap<>();
         adminItems.put("/", "Home");
         adminItems.put("/add_product", "Add product");
+        adminItems.put("/update_product", "Update products list");
+        adminItems.put("/delete_product", "Delete product");
 
         return adminItems;
     }
@@ -48,6 +54,8 @@ public class MainService {
         Map<String, String> superAdminItems = new HashMap<>();
         superAdminItems.put("/", "Home");
         superAdminItems.put("/add_organization", "Add organization");
+        superAdminItems.put("/update_organization", "Update organization");
+        superAdminItems.put("/delete_organization", "Delete organization");
 
         return superAdminItems;
     }
@@ -57,10 +65,6 @@ public class MainService {
         anonymousItems.put("/", "Home");
 
         return anonymousItems;
-    }
-
-    private static boolean isSameRoleName(final Role role) {
-        return getRoles().stream().anyMatch(a -> a.getAuthority().equals(role.name()));
     }
 
     private static Collection<? extends GrantedAuthority> getRoles() {

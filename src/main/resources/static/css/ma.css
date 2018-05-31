@@ -1,3 +1,7 @@
 body {
-    background: greenyellow;
+    /*background: greenyellow;*/
+}
+
+.login-background {
+    background-image: url("../img/login/2.jpg");
 }

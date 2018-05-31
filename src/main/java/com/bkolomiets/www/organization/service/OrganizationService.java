@@ -16,8 +16,14 @@ import java.util.List;
 public class OrganizationService {
     private final OrganizationRepository organizationRepository;
 
-    public void add(final String organizationName, final String productName, final String login, final String password, final String mail
-            , final Long phone, final String description, final String role) {
+    public void add(final String organizationName
+                  , final String productName
+                  , final String login
+                  , final String password
+                  , final String mail
+                  , final Long phone
+                  , final String description
+                  , final String role) {
         Organization organization;
         Product product = createClearProductByOrganization(productName);
 
@@ -44,10 +50,6 @@ public class OrganizationService {
 
     public List<Organization> getOrganizationList() {
         return organizationRepository.findAll();
-    }
-
-    public Organization findByPassword(final String password) {
-        return organizationRepository.findByPassword(password);
     }
 
     private boolean isExistOrganizationName(final String name) {
