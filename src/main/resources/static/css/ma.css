@@ -2,6 +2,65 @@ body {
     /*background: greenyellow;*/
 }
 
-.login-background {
-    background-image: url("../img/login/2.jpg");
+@media(max-width: 1900px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(1900).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+@media(max-width: 1600px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(1600).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+@media(max-width: 1440px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(1440).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+@media(max-width: 1200px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(1200).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+@media(max-width: 1000px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(1000).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+@media(max-width: 768px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(768).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+@media(max-width: 576px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(576).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+@media(max-width: 640px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(640).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+@media(max-width: 320px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(320).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
 }
