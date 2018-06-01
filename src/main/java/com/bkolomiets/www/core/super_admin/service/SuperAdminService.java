@@ -13,23 +13,6 @@ import static org.springframework.security.core.context.SecurityContextHolder.ge
 @Service
 public class SuperAdminService {
 
-    /*public static Map<String, String> getNavMenuItem() {
-        Map<String, String> superAdminItems = new HashMap<>();
-        superAdminItems.put("/super_admin/add", "Add organization");
-        superAdminItems.put("/super_admin/all_organization", "All organization");
-
-        Map<String, String> adminItems = new HashMap<>();
-        adminItems.put("/add_product", "Add product");
-
-        if (isSameRoleName(Role.USER)) {
-            return adminItems;
-        } else if (!isSameRoleName(Role.SUPER_ADMIN)) {
-            return superAdminItems;
-        } else {
-            return null;
-        }
-    }*/
-
     public static List<String> getAppRoles() {
         List<String> rolesList = new ArrayList<>();
         for (Role role : Role.values()) {
@@ -40,12 +23,4 @@ public class SuperAdminService {
 
         return rolesList;
     }
-
-//    private static boolean isSameRoleName(final Role role) {
-//        return getRoles().stream().anyMatch(a -> a.getAuthority().equals(role.name()));
-//    }
-
-//    private static Collection<? extends GrantedAuthority> getRoles() {
-//        return getContext().getAuthentication().getAuthorities();
-//    }
 }

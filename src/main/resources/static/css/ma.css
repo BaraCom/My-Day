@@ -1,6 +1,15 @@
-body {
-    /*background: greenyellow;*/
+.logo-input, .reg-input {
+    margin: auto;
+    min-width: 200px;
 }
+
+.logo-input-name {
+    background: red;
+}
+
+
+
+/*---------------------------------------- @media ---------------------------------------------------*/
 
 @media(max-width: 1900px) {
     .login-background {

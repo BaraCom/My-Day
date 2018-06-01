@@ -44,6 +44,7 @@ public class MainService {
         Map<String, String> adminItems = new HashMap<>();
         adminItems.put("/", "Home");
         adminItems.put("/add_product", "Add product");
+        adminItems.put("/all_product", "All products");
         adminItems.put("/update_product", "Update products list");
         adminItems.put("/delete_product", "Delete product");
 
@@ -54,8 +55,10 @@ public class MainService {
         Map<String, String> superAdminItems = new HashMap<>();
         superAdminItems.put("/", "Home");
         superAdminItems.put("/add_organization", "Add organization");
+        superAdminItems.put("/all_organization", "All organizations");
         superAdminItems.put("/update_organization", "Update organization");
         superAdminItems.put("/delete_organization", "Delete organization");
+        superAdminItems.put("/all_products", "All products");
 
         return superAdminItems;
     }
