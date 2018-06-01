@@ -1,11 +1,36 @@
-.logo-input, .reg-input {
+.logo-reg-form {
+    background: url("../img/logo/reg-log-form(570x120).png") no-repeat;
+    display: flex;
     margin: auto;
-    min-width: 200px;
+    max-width: 570px;
 }
 
-.logo-input-name {
-    background: red;
+.login-form, .reg-form {
+    margin-left: 4px;
+    padding-top: 44px;
 }
+
+.reg-form {
+    padding-left: 145px;
+}
+
+.username-input, .pass-input {
+    border: none;
+    margin-bottom: 3px;
+    height: 31px;
+    width: 206px;
+}
+
+.username-reg-input, .pass-reg-input, .repeat-reg-input {
+    border: none;
+    margin-bottom: 3px;
+    width: 208px;
+}
+
+.username-input, .username-reg-input {
+    background: url("../img/logo/logo-reg-input-bg(206x31).png") center no-repeat;
+}
+
 
 
 
