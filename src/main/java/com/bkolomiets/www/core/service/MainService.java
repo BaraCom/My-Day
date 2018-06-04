@@ -44,7 +44,7 @@ public class MainService {
         Map<String, String> adminItems = new LinkedHashMap<>();
         adminItems.put("/", "Home");
         adminItems.put("/add_product", "Add product");
-        adminItems.put("/all_product", "All products");
+        adminItems.put("/all_products", "All products");
         adminItems.put("/update_product", "Update products list");
         adminItems.put("/delete_product", "Delete product");
 

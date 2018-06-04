@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import sun.applet.Main;
 
@@ -33,6 +34,14 @@ public class AdminController {
         return "admin";
     }
 
+    /*@GetMapping("/all_products")
+    public String allProducts(final Model model) {
+        model.addAttribute("navItems", getNavBarByRole());
+        model.addAttribute("isLogged", MainService.getLogButtonByRole());
+
+        return "all_products";
+    }
+
     @GetMapping("/add_product")
     public String addProduct(final Model model) {
         model.addAttribute("navItems", getNavBarByRole());
@@ -40,4 +49,11 @@ public class AdminController {
 
         return "admin";
     }
+
+    @PostMapping("/add_product")
+    public String addNewProduct() {
+
+
+        return "redirect:/admin/all_products";
+    }*/
 }

@@ -16,8 +16,9 @@ import java.util.Set;
 public class ProductService {
     private final OrganizationRepository organizationRepository;
 
-    public Set<Product> getProductByOrganizationName(final String organizationName) {
-        Organization organization = organizationRepository.findByOrganizationName(organizationName);
+    public Set<Product> getProductList(final String password, final String organizationName) {
+        Organization organization = organizationRepository.findByPasswordAndOrganizationName(password, organizationName);
+
         return organization.getProductList();
     }
 }

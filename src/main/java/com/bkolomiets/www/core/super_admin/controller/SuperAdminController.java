@@ -2,7 +2,6 @@ package com.bkolomiets.www.core.super_admin.controller;
 
 import com.bkolomiets.www.core.repository.IUserRepository;
 import com.bkolomiets.www.core.service.MainService;
-import com.bkolomiets.www.core.user_role.Role;
 import com.bkolomiets.www.core.user_role.User;
 import com.bkolomiets.www.organization.domain.Organization;
 import com.bkolomiets.www.organization.service.OrganizationService;
@@ -14,11 +13,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import java.util.Collections;
 import java.util.List;
 import static com.bkolomiets.www.core.service.MainService.getLogButtonByRole;
 import static com.bkolomiets.www.core.service.MainService.getNavBarByRole;
 import static com.bkolomiets.www.core.super_admin.service.SuperAdminService.getAppRoles;
+import static com.bkolomiets.www.core.user_role.Role.valueOf;
+import static java.util.Collections.singleton;
 
 /**
  * @author Borislav Kolomiets
@@ -68,12 +68,14 @@ public class SuperAdminController {
                                 , @RequestParam("mail") final String mail
                                 , @RequestParam("phone") final Long phone
                                 , @RequestParam("description") final String description
-                                , @RequestParam("role") final String role
-                                ,                       final User user) {
+                                , @RequestParam("role") final String role) {
         organizationService.add(organizationName, productName, username, password, mail, phone, description, role);
 
+        User user = new User();
+        user.setUsername(username);
+        user.setPassword(password);
         user.setActive(true);
-        user.setRoles(Collections.singleton(Role.ADMIN));
+        user.setRoles(singleton(valueOf(role)));
         userRepository.save(user);
 
         return "redirect:/super_admin/all_organization";

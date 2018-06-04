@@ -25,7 +25,7 @@ public class OrganizationService {
                   , final String description
                   , final String role) {
         Organization organization;
-        Product product = createClearProductByOrganization(productName);
+        Product product = createClearProduct(productName);
 
         if (isExistOrganizationName(organizationName)) {
             organizationRepository.findByOrganizationName(organizationName);
@@ -58,7 +58,7 @@ public class OrganizationService {
                 .anyMatch(x -> x.getOrganizationName().equalsIgnoreCase(name));
     }
 
-    private Product createClearProductByOrganization(final String productName) {
+    private Product createClearProduct(final String productName) {
         return new Product(productName, 0D, 0D, 0D, " - ");
     }
 }

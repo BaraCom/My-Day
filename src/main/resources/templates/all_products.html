@@ -3,6 +3,35 @@
     <head th:replace="/fragments/header :: head"/>
     <body>
         <nav th:replace="/fragments/navbar :: navbar"/>
+all products
 
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Price S</th>
+                    <th scope="col">Price M</th>
+                    <th scope="col">Price L</th>
+                    <th scope="col">Weight S</th>
+                    <th scope="col">Weight M</th>
+                    <th scope="col">Weight L</th>
+                    <th scope="col">Description</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="product : ${productsList}">
+                    <th scope="row" th:text="${product.getId()}"/>
+                    <td th:text="${product.getProductName()}"/>
+                    <td th:text="${product.getPriceS()}"/>
+                    <td th:text="${product.getPriceM()}"/>
+                    <td th:text="${product.getPriceL()}"/>
+                    <td th:text=""/>
+                    <td th:text=""/>
+                    <td th:text=""/>
+                    <td th:text="${product.getDescription()}"/>
+                </tr>
+            </tbody>
+        </table>
     </body>
 </html>
