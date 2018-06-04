@@ -1,56 +1,49 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="/fragments/header :: head"/>
+
     <body class="login-background">
         <nav th:replace="/fragments/navbar :: navbar"/>
-                    <div class="logo-reg-form">
-                        <div class="login-form">
-                            <div th:if="${param.error}">
-                                Invalid Username or Password!
-                            </div>
 
-                            <form th:action="@{/login}" method="post">
-                                <div class="logo-input">
-                                    <input class="username-input" type="text" name="username" placeholder="Login">
-                                </div>
-                                <div class="logo-input">
-                                    <input class="pass-input" type="text" name="password" placeholder="Password">
-                                </div>
+        <div class="main-logo"></div>
 
-                                <div class="logo-input">
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        Sing In
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-
-                        <div class="reg-form">
-                            <div th:if="${userExists}">
-                                <p th:text="${userExists}"/>
-                            </div>
-                            <div th:if="${notEqualsPass}">
-                                <p th:text="${notEqualsPass}"/>
-                            </div>
-
-                            <form th:action="@{/registration}" method="post">
-                                <div class="reg-input">
-                                    <input class="username-reg-input" type="text" name="username" placeholder="Desired Username">
-                                </div>
-                                <div class="reg-input">
-                                    <input class="pass-reg-input" type="text" name="password" placeholder="Password">
-                                </div>
-                                <div class="reg-input">
-                                    <input class="repeat-reg-input" type="text" name="repeatPassword" placeholder="Repeat password">
-                                </div>
-
-                                <div class="reg-input">
-                                    <button type="submit" class="btn btn-success btn-sm">
-                                        Registration
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
+        <div class="logo-reg-form">
+            <div class="login-form">
+                <form th:action="@{/login}" method="post">
+                    <div class="logo-input">
+                        <input class="username-input" type="text" name="username" placeholder="Login">
                     </div>
+                    <div class="logo-input">
+                        <input class="pass-input" type="password" name="password" placeholder="Password">
+                    </div>
+
+                    <div class="logo-input">
+                        <button type="submit" class="log-btn btn btn-success btn-sm">
+                            Sing In
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div class="reg-form">
+                <form th:action="@{/registration}" method="post">
+                    <div class="reg-input">
+                        <input class="username-reg-input" type="text" name="username" placeholder="Desired Username">
+                    </div>
+                    <div class="reg-input">
+                        <input class="pass-reg-input" type="password" name="password" placeholder="Password">
+                    </div>
+                    <div class="reg-input">
+                        <input class="repeat-reg-input" type="password" name="repeatPassword" placeholder="Repeat password">
+                    </div>
+
+                    <div class="reg-input">
+                        <button type="submit" class="reg-btn btn btn-success btn-sm">
+                            Registration
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
     </body>
 </html>

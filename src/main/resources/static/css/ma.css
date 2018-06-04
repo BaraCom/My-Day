@@ -1,7 +1,53 @@
+/*-----------------------------------------NavBar------------------------------------------*/
+
+.navbar {
+    background: -moz-linear-gradient(top, rgba(95,51,0,0.45) 0%, rgba(0,21,37,0.45) 100%);
+    background: -webkit-linear-gradient(top, rgba(95,51,0,0.45) 0%,rgba(0,21,37,0.45) 100%);
+    background: linear-gradient(to bottom, rgba(95,51,0,0.45) 0%,rgba(0,21,37,0.45) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#735f3300', endColorstr='#73001525',GradientType=0 );
+}
+
+.brand {
+    background: url("../img/logo/main-logo(182x50).png") center no-repeat;
+    height: 50px;
+    width: 182px;
+}
+
+.nav-item {
+    margin-right: 4px !important;
+}
+
+.nav-item:last-child {
+    margin-right: auto;
+}
+
+.nav-link {
+    color: #d88f00 !important;
+    font-family: "Play";
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-shadow: 0px -2px 1px rgba(0,0,0,0.6);
+    transition: ease 0.5s;
+}
+
+.nav-link:hover {
+    color: #00e3ee !important;
+}
+
+
+/*------------------------------------------Logo------------------------------------------*/
+
+.main-logo {
+    background: url("../img/logo/main-logo(272x78).png") center no-repeat;
+    margin: 50px auto auto;
+    height: 78px;
+    width: 272px;
+}
+
 .logo-reg-form {
     background: url("../img/logo/reg-log-form(570x120).png") no-repeat;
     display: flex;
-    margin: auto;
+    margin: 150px auto auto;
     max-width: 570px;
 }
 
@@ -14,11 +60,25 @@
     padding-left: 145px;
 }
 
-.username-input, .pass-input {
+
+/*-----------------------------Login Form Inputs-------------------------------*/
+.username-input, .pass-input, .username-reg-input, .pass-reg-input, .repeat-reg-input {
     border: none;
+    color: #00e3ee;
+    font-family: "Play";
+    letter-spacing: 1px;
     margin-bottom: 3px;
+    padding-left: 35px;
     height: 31px;
     width: 206px;
+}
+
+.username-input::placeholder, .pass-input::placeholder, .username-reg-input::placeholder, .pass-reg-input::placeholder, .repeat-reg-input::placeholder {
+    color: #4d3e00;
+    font-family: "Play";
+    font-size: 14px;
+    letter-spacing: 1px;
+    vertical-align: center;
 }
 
 .username-reg-input, .pass-reg-input, .repeat-reg-input {
@@ -29,6 +89,44 @@
 
 .username-input, .username-reg-input {
     background: url("../img/logo/logo-reg-input-bg(206x31).png") center no-repeat;
+}
+
+@-webkit-keyframes autofillUserName {
+    to {
+        color: #00e3ee;
+        font-family: "Play";
+        background: url("../img/logo/logo-reg-input-bg(206x31).png");
+        letter-spacing: 1px;
+    }
+}
+
+.username-input:-webkit-autofill, .username-reg-input:-webkit-autofill {
+    -webkit-animation-name: autofillUserName;
+    -webkit-animation-fill-mode: both;
+}
+
+@-webkit-keyframes autofillPass {
+    to {
+        color: #00e3ee;
+        font-family: "Play";
+        background: url("../img/logo/pass-reg-input-bg(206x31).png");
+        letter-spacing: 1px;
+    }
+}
+
+.pass-input:-webkit-autofill, .pass-reg-input:-webkit-autofill, .repeat-reg-input:-webkit-autofill {
+    -webkit-animation-name: autofillPass;
+    -webkit-animation-fill-mode: both;
+}
+
+.pass-input, .pass-reg-input, .repeat-reg-input {
+    background: url("../img/logo/pass-reg-input-bg(206x31).png") center no-repeat;
+}
+
+
+/*-------------------------Reg Btn-----------------------*/
+.reg-btn {
+    float: right;
 }
 
 
@@ -57,14 +155,21 @@
     }
 }
 
-@media(max-width: 1200px) {
+@media(max-width: 1230px) {
     .login-background {
-        background: url("../img/logo/logo-bg(1200).jpg") no-repeat fixed center;
+        background: url("../img/logo/logo-bg(1230).jpg") no-repeat fixed center;
         background-size: cover;
     }
 }
 
-@media(max-width: 1000px) {
+@media(max-width: 1136px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(1136).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+/*@media(max-width: 1000px) {
     .login-background {
         background: url("../img/logo/logo-bg(1000).jpg") no-repeat fixed center;
         background-size: cover;
@@ -78,16 +183,17 @@
     }
 }
 
-@media(max-width: 576px) {
-    .login-background {
-        background: url("../img/logo/logo-bg(576).jpg") no-repeat fixed center;
-        background-size: cover;
-    }
-}
 
 @media(max-width: 640px) {
     .login-background {
         background: url("../img/logo/logo-bg(640).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+}
+
+@media(max-width: 576px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(576).jpg") no-repeat fixed center;
         background-size: cover;
     }
 }
@@ -97,4 +203,4 @@
         background: url("../img/logo/logo-bg(320).jpg") no-repeat fixed center;
         background-size: cover;
     }
-}
+}*/

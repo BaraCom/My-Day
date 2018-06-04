@@ -1,12 +1,14 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light" th:fragment="navbar" xmlns:th="http://www.thymeleaf.org">
-    <a class="navbar-brand" href="#">My-Day</a>
+<nav class="navbar navbar-expand-lg navbar-light" th:fragment="navbar" xmlns:th="http://www.thymeleaf.org">
+    <a class="navbar-brand" href="/">
+        <div class="brand"></div>
+    </a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav mr-auto" th:each="nav : ${navItems}">
-            <li class="nav-item">
+        <ul class="navbar-ul navbar-nav mr-auto" >
+            <li class="nav-item" th:each="nav : ${navItems}">
                 <a class="nav-link mx-2" th:href="${nav.getKey()}" th:text="${nav.getValue()}"/>
             </li>
         </ul>

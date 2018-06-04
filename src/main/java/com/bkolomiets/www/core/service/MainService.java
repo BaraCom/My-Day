@@ -33,7 +33,7 @@ public class MainService {
     }
 
     private static Map<String, String> getUserNavBar() {
-        Map<String,String> userItems = new HashMap<>();
+        Map<String,String> userItems = new LinkedHashMap<>();
         userItems.put("/", "Home");
         userItems.put("#", "My purchases");
 
@@ -41,7 +41,7 @@ public class MainService {
     }
 
     private static Map<String, String> getAdminNavBar() {
-        Map<String, String> adminItems = new HashMap<>();
+        Map<String, String> adminItems = new LinkedHashMap<>();
         adminItems.put("/", "Home");
         adminItems.put("/add_product", "Add product");
         adminItems.put("/all_product", "All products");
@@ -52,7 +52,7 @@ public class MainService {
     }
 
     private static Map<String, String> getSuperAdminNavBar() {
-        Map<String, String> superAdminItems = new HashMap<>();
+        Map<String, String> superAdminItems = new LinkedHashMap<>();
         superAdminItems.put("/", "Home");
         superAdminItems.put("/add_organization", "Add organization");
         superAdminItems.put("/all_organization", "All organizations");
@@ -64,7 +64,7 @@ public class MainService {
     }
 
     private static Map<String, String> getAnonymousNavBar() {
-        Map<String, String> anonymousItems = new HashMap<>();
+        Map<String, String> anonymousItems = new LinkedHashMap<>();
         anonymousItems.put("/", "Home");
 
         return anonymousItems;

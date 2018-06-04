@@ -5,15 +5,17 @@
         <nav th:replace="/fragments/navbar :: navbar"/>
 
         <div class="container">
-            Registration
+
+
+            <!--Registration
             <div th:if="${userExists}">
                 <p th:text="${userExists}"/>
             </div>
             <div th:if="${notEqualsPass}">
                 <p th:text="${notEqualsPass}"/>
-            </div>
+            </div>-->
 
-            <form th:action="@{/registration}" method="post">
+            <!--<form th:action="@{/registration}" method="post">
                 <div class="form-group col-3">
                     <input type="text" name="username" class="form-control" placeholder="Login">
                 </div>
@@ -29,7 +31,7 @@
                         Registration
                     </button>
                 </div>
-            </form>
+            </form>-->
         </div>
     </body>
 </html>

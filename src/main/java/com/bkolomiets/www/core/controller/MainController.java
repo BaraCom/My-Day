@@ -32,6 +32,26 @@ public class MainController {
         return "/main";
     }
 
+    @GetMapping("/login")
+    public String login(final Model model) {
+        model.addAttribute("navItems", getNavBarByRole());
+        model.addAttribute("isLogged", getLogButtonByRole());
+        model.addAttribute("loginPage", "");
+
+        return "login";
+    }
+
+    @PostMapping("/login")
+    public String loginPost(final User user) {
+        User userName = userRepository.findByUsername(user.getUsername());
+
+        if (userName != null) {
+            return "redirect:/login";
+        }
+
+        return "redirect:/login";
+    }
+
     @GetMapping("/registration")
     public String registration(final Model model) {
         model.addAttribute("navItems", getNavBarByRole());
@@ -40,26 +60,18 @@ public class MainController {
         return "registration";
     }
 
-    @GetMapping("/login")
-    public String getNavBar(final Model model) {
-        model.addAttribute("navItems", getNavBarByRole());
-        model.addAttribute("isLogged", getLogButtonByRole());
-
-        return "login";
-    }
-
     @PostMapping("/registration")
-    public String addUser(@RequestParam("repeatPassword") final String repeatPassword, final User user, final Model model) {
+    public String addNewUser(@RequestParam("repeatPassword") final String repeatPassword
+                           , @RequestParam("password") final String password
+                           , final User user) {
         User userName = userRepository.findByUsername(user.getUsername());
 
-        if (!repeatPassword.equals(user.getPassword())) {
-            model.addAttribute("notEqualsPass", "Passwords id not equals!");
-            return "registration";
+        if (!password.equals(repeatPassword)) {
+            return "redirect:/registration";
         }
 
         if (userName != null) {
-            model.addAttribute("userExists", "User is exists!");
-            return "registration";
+            return "redirect:/registration";
         }
 
         user.setActive(true);
