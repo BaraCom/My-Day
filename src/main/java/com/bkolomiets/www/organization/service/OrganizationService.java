@@ -59,6 +59,6 @@ public class OrganizationService {
     }
 
     private Product createClearProduct(final String productName) {
-        return new Product(productName, 0D, 0D, 0D, " - ");
+        return new Product(productName, 0D, 0D, 0D, 0, 0, 0,  " - ");
     }
 }

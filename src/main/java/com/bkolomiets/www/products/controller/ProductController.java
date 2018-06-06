@@ -1,7 +1,7 @@
 package com.bkolomiets.www.products.controller;
 
 import com.bkolomiets.www.core.service.MainService;
-import com.bkolomiets.www.core.user_role.User;
+import com.bkolomiets.www.products.domain.Product;
 import com.bkolomiets.www.products.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,8 +12,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 import static com.bkolomiets.www.core.service.MainService.getNavBarByRole;
 
@@ -29,9 +32,8 @@ public class ProductController {
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
-        Collection<? extends GrantedAuthority> authorities = SecurityContextHolder.getContext().getAuthentication().getAuthorities();
 
-//        model.addAttribute("productsList", productService.getProductList(user.getPassword(), currentPrincipalName));
+        model.addAttribute("productsList", productService.getProductList(currentPrincipalName));
 
         return "all_products";
     }
@@ -41,12 +43,23 @@ public class ProductController {
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", MainService.getLogButtonByRole());
 
-        return "admin";
+        return "add_product";
     }
 
     @PostMapping("/add_product")
-    public String addNewProduct() {
+    public String addNewProduct(@RequestParam final String productName
+                              , @RequestParam final String priceS
+                              , @RequestParam final String priceM
+                              , @RequestParam final String priceL
+                              , @RequestParam final String weightS
+                              , @RequestParam final String weightM
+                              , @RequestParam final String weightL
+                              , @RequestParam final String description) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        String currentPrincipalName = authentication.getName();
 
-        return "redirect:/admin/all_products";
+        productService.add(currentPrincipalName, productName, priceS, priceM, priceL, weightS, weightM, weightL, description);
+
+        return "redirect:/all_products";
     }
 }

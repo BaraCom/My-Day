@@ -2,7 +2,7 @@
     <a class="navbar-brand" href="/">
         <div class="brand"></div>
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-menu-icon navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -13,7 +13,7 @@
             </li>
         </ul>
         <div th:if="${isLogged}">
-            <h5 class="form-inline mx-2 my-lg-0">
+            <h5 class="user-name form-inline mx-2 my-lg-0">
                 Hello, [[${#httpServletRequest.remoteUser}]]!
             </h5>
         </div>

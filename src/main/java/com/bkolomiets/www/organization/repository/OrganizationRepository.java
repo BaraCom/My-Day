@@ -11,9 +11,7 @@ import org.springframework.stereotype.Repository;
  */
 
 public interface OrganizationRepository extends JpaRepository<Organization, Long> {
+    Organization findByOrganizationName(final String name);
 
-//    @Query("SELECT o from Organization o where lower(o.organizationName) = lower(:name)")
-    Organization findByOrganizationName(/*@Param("name") */final String name);
-
-    Organization findByPasswordAndOrganizationName(final String password, final String organizationName);
+    Organization findByLoginAndPassword(final String login, final String password);
 }

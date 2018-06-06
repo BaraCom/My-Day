@@ -1,11 +1,60 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="/fragments/header :: head"/>
-    <body>
+    <body class="add-product-bg">
         <nav th:replace="/fragments/navbar :: navbar"/>
 
+        <div class="add-product-title">
+            <p class="title">
+                Add product
+            </p>
+        </div>
+
         <div class="container">
-add product
+            <form class="add-product-form was-validated" method="post" th:action="@{/add_product}">
+                <div class="form-row">
+                    <div class="add-product-col col-md-2 mb-3">
+                        <input name="productName" type="text" class="form-control" id="validationCustom01" placeholder="Product name" required>
+                        <div class="invalid-feedback">
+                            Please, entry is correct product name!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="add-product-col col-md-2 mb-3">
+                        <input name="priceS" type="text" class="form-control" id="validationCustom02" placeholder="Price S">
+                    </div>
+                    <div class="add-product-col col-md-2 mb-3">
+                        <input name="priceM" type="text" class="form-control" id="validationCustom03" placeholder="Price M">
+                    </div>
+                    <div class="add-product-col col-md-2 mb-3">
+                        <input name="priceL" type="text" class="form-control" id="validationCustom04" placeholder="Price L">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="add-product-col col-md-2 mb-3">
+                        <input name="weightS" type="text" class="form-control" id="validationCustom05" placeholder="Weight S">
+                    </div>
+                    <div class="add-product-col col-md-2 mb-3">
+                        <input name="weightM" type="text" class="form-control" id="validationCustom06" placeholder="Weight M">
+                    </div>
+                    <div class="add-product-col col-md-2 mb-3">
+                        <input name="weightL" type="text" class="form-control" id="validationCustom07" placeholder="Weight L">
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="add-product-col col-md-4 mb-3">
+                        <textarea name="description" type="text" class="form-control" id="validationCustom08" placeholder="Description" required></textarea>
+                        <div class="invalid-feedback">
+                            Please,write a description!
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-outline-success">
+                    Add
+                </button>
+            </form>
         </div>
     </body>
 </html>

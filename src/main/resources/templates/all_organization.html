@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <tr th:each="organizationsList : ${organizations}">
-                    <th scope="row" th:text="${organizationsList.getId()}"/>
+                    <th scope="row" th:with="i = ''" th:text="${#ids.seq(i)}"/>
                     <td th:text="${organizationsList.getOrganizationName()}"/>
                     <td th:text="${organizationsList.getLogin()}"/>
                     <td th:text="${organizationsList.getPassword()}"/>

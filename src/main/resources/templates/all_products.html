@@ -1,13 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
     <head th:replace="/fragments/header :: head"/>
-    <body>
+    <body class="all-products-bg">
         <nav th:replace="/fragments/navbar :: navbar"/>
-all products
+
+        <div class="all-products-title">
+            <p class="title">
+                All products
+            </p>
+        </div>
 
         <table class="table">
             <thead>
-                <tr>
+                <tr class="all-products-tr">
                     <th scope="col">#</th>
                     <th scope="col">Product name</th>
                     <th scope="col">Price S</th>
@@ -20,16 +25,25 @@ all products
                 </tr>
             </thead>
             <tbody>
-                <tr th:each="product : ${productsList}">
-                    <th scope="row" th:text="${product.getId()}"/>
+                <tr class="all-products-tb-tr" th:each="product : ${productsList}">
+                    <th scope="row" th:with="i = ''" th:text="${#ids.seq(i)}"/>
                     <td th:text="${product.getProductName()}"/>
                     <td th:text="${product.getPriceS()}"/>
                     <td th:text="${product.getPriceM()}"/>
                     <td th:text="${product.getPriceL()}"/>
-                    <td th:text=""/>
-                    <td th:text=""/>
-                    <td th:text=""/>
-                    <td th:text="${product.getDescription()}"/>
+                    <td th:text="${product.getWeightS()}"/>
+                    <td th:text="${product.getWeightM()}"/>
+                    <td th:text="${product.getWeightL()}"/>
+                    <td>
+                        <div class="dropdown">
+                            <button class="all-products-dropdown-btn btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Show description
+                            </button>
+                            <div class="all-products-dropdown dropdown-menu w-250" aria-labelledby="dropdownMenu2">
+                                <p th:text="${product.getDescription()}"/>
+                            </div>
+                        </div>
+                    </td>
                 </tr>
             </tbody>
         </table>

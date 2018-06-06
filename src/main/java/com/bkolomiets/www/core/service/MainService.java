@@ -54,11 +54,11 @@ public class MainService {
     private static Map<String, String> getSuperAdminNavBar() {
         Map<String, String> superAdminItems = new LinkedHashMap<>();
         superAdminItems.put("/", "Home");
-        superAdminItems.put("/add_organization", "Add organization");
-        superAdminItems.put("/all_organization", "All organizations");
-        superAdminItems.put("/update_organization", "Update organization");
-        superAdminItems.put("/delete_organization", "Delete organization");
-        superAdminItems.put("/all_products", "All products");
+        superAdminItems.put("/super_admin/add_organization", "Add organization");
+        superAdminItems.put("/super_admin/all_organization", "All organizations");
+        superAdminItems.put("/super_admin/update_organization", "Update organization");
+        superAdminItems.put("/super_admin/delete_organization", "Delete organization");
+        superAdminItems.put("/super_admin/all_products", "All products");
 
         return superAdminItems;
     }

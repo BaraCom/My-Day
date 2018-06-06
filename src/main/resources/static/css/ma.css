@@ -34,6 +34,28 @@
     color: #00e3ee !important;
 }
 
+.user-name {
+    color: firebrick;
+    text-shadow: 0px -2px 1px rgba(70, 0, 0, 0.6);
+}
+
+.logout-btn {
+    border: 1px solid #f8f9fa80;
+    color: beige;
+}
+
+.logout-btn:hover {
+    background-color: #f9383842;
+    border: 1px solid #01ffe869;
+    color: #01e6e6;
+}
+
+.navbar-menu-icon {
+    background-color: #ff820163;
+    border: 1px solid #ff990159;
+    outline: none !important;
+}
+
 
 /*------------------------------------------Logo------------------------------------------*/
 
@@ -61,7 +83,7 @@
 }
 
 
-/*-----------------------------Login Form Inputs-------------------------------*/
+/*----------------------------- Login Form Inputs -------------------------------*/
 .username-input, .pass-input, .username-reg-input, .pass-reg-input, .repeat-reg-input {
     border: none;
     color: #00e3ee;
@@ -130,6 +152,91 @@
 }
 
 
+/*---------------------------------------- Main Page -----------------------------------------------*/
+.card {
+    background: none;
+}
+
+.card-body {
+    background: rgba(44, 121, 107, 0.38);
+}
+
+
+/*------------------------------------- All products / Add product ------------------------------------------------*/
+.all-products-title, .add-product-title {
+    background-color: #ff83031c;
+    box-shadow: 1px 0px 5px black;
+    color: wheat;
+    font-family: "Play";
+    font-size: 30px;
+    font-weight: 600;
+    margin-top: 50px;
+    text-align: center;
+    text-shadow: 0px 1px 2px black;
+}
+
+.all-products-tr {
+    background-color: #00ffff96;
+    color: #e9fffd;
+    text-shadow: #343a40 1px 0px, #343a40 1px 1px, #343a40 0px 1px
+               , #343a40 -1px 1px, #343a40 -1px 0px, #0c5460 -1px -1px
+               , #0c5460 0px -1px, #0c5460 1px -1px, #0c5460 0 0 3px
+               , #0c5460 0 0 3px, #0c5460 0 0 3px, #0c5460 0 0 3px
+               , #0c5460 0 0 3px, #0c5460 0 0 3px, #0c5460 0 0 3px, #0c5460 0 0 3px;
+}
+
+.all-products-tb-tr {
+    background-color: #46000045;
+    border-bottom: 1px solid;
+    color: burlywood;
+    font-weight: 700;
+}
+
+.table td, .table th {
+    border-top: none !important;
+}
+
+.all-products-dropdown-btn {
+    background-color: #650250bf;
+    box-shadow: none !important;
+    color: burlywood;
+    font-weight: 500;
+}
+
+.all-products-dropdown-btn:hover {
+    background-color: #51026587;
+    color: burlywood;
+    font-weight: 500;
+}
+
+.all-products-dropdown-btn:not(:disabled):not(.disabled):active:focus,
+.show>.all-products-dropdown-btn:focus {
+    background-color: #51026587;
+    box-shadow: none !important;
+    color: burlywood;
+    font-weight: 500;
+}
+
+.all-products-dropdown {
+    background-color: #89deffb0;
+}
+
+
+/*--------------------------------------- Add product -----------------------------------------------*/
+.add-product-form {
+    background-color: #0c546045;
+    padding: 20px;
+}
+
+.add-product-col {
+    min-width: 150px;
+}
+
+.add-product-col>.invalid-feedback {
+    font-family: "Play";
+    font-size: 14px;
+    text-shadow: 0px 1px 1px black;
+}
 
 
 /*---------------------------------------- @media ---------------------------------------------------*/
@@ -160,6 +267,15 @@
         background: url("../img/logo/logo-bg(1230).jpg") no-repeat fixed center;
         background-size: cover;
     }
+
+    .main-page-body {
+        background: url("../img/logo/main-page-bg(1230).jpg") no-repeat fixed center;
+        background-size: cover;
+    }
+
+    .all-products-bg, .add-product-bg {
+        background: url("../img/bg/all-products-bg(1230x700).jpg") no-repeat fixed center;
+    }
 }
 
 @media(max-width: 1136px) {
@@ -169,14 +285,18 @@
     }
 }
 
-/*@media(max-width: 1000px) {
-    .login-background {
+@media(max-width: 1000px) {
+    /*.login-background {
         background: url("../img/logo/logo-bg(1000).jpg") no-repeat fixed center;
         background-size: cover;
+    }*/
+
+    .all-products-bg, .add-product-bg {
+        background: url("../img/bg/all-products-bg(1000x700).jpg") no-repeat fixed center;
     }
 }
 
-@media(max-width: 768px) {
+/*@media(max-width: 768px) {
     .login-background {
         background: url("../img/logo/logo-bg(768).jpg") no-repeat fixed center;
         background-size: cover;
