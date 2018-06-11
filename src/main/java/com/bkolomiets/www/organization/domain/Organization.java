@@ -32,8 +32,8 @@ public class Organization {
     @Column(name = "organization_name", length = 50, nullable = false)
     private String organizationName;
 
-    @Column(name = "product_name", length = 50, nullable = false)
-    private String productName;
+//    @Column(name = "product_name", length = 50, nullable = false)
+//    private String productName;
 
     @Column(name = "login", length = 50, nullable = false)
     private String login;

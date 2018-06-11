@@ -1,5 +1,6 @@
 package com.bkolomiets.www.products.domain;
 
+import com.bkolomiets.www.category.domain.Category;
 import com.bkolomiets.www.organization.domain.Organization;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -59,4 +60,8 @@ public class Product {
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productList")
     private Set<Organization> organizationList = new HashSet<>();
+
+    @ManyToOne
+    @JoinColumn(name = "category_id")
+    private Category category;
 }

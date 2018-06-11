@@ -17,7 +17,7 @@ public class OrganizationService {
     private final OrganizationRepository organizationRepository;
 
     public void add(final String organizationName
-                  , final String productName
+//                  , final String productName
                   , final String login
                   , final String password
                   , final String mail
@@ -25,7 +25,7 @@ public class OrganizationService {
                   , final String description
                   , final String role) {
         Organization organization;
-        Product product = createClearProduct(productName);
+//        Product product = createClearProduct(productName);
 
         if (isExistOrganizationName(organizationName)) {
             organizationRepository.findByOrganizationName(organizationName);
@@ -36,14 +36,14 @@ public class OrganizationService {
         }
 
         organization.setOrganizationName(organizationName);
-        organization.setProductName(productName);
+//        organization.setProductName(productName);
         organization.setLogin(login);
         organization.setPassword(password);
         organization.setMail(mail);
         organization.setPhone(phone);
         organization.setDescription(description);
         organization.setRole(role);
-        organization.getProductList().add(product);
+//        organization.getProductList().add(product);
 
         organizationRepository.save(organization);
     }
