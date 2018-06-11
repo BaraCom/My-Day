@@ -28,7 +28,7 @@ public class ProductController {
 
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
-        model.addAttribute("productsList", productService.getProductList(currentPrincipalName));
+        model.addAttribute("dataByProductList", productService.getDataByProductList(currentPrincipalName));
 
         return "all_products";
     }

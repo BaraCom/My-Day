@@ -2,7 +2,6 @@ package com.bkolomiets.www.organization.service;
 
 import com.bkolomiets.www.organization.domain.Organization;
 import com.bkolomiets.www.organization.repository.OrganizationRepository;
-import com.bkolomiets.www.products.domain.Product;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -17,7 +16,6 @@ public class OrganizationService {
     private final OrganizationRepository organizationRepository;
 
     public void add(final String organizationName
-//                  , final String productName
                   , final String login
                   , final String password
                   , final String mail
@@ -25,7 +23,6 @@ public class OrganizationService {
                   , final String description
                   , final String role) {
         Organization organization;
-//        Product product = createClearProduct(productName);
 
         if (isExistOrganizationName(organizationName)) {
             organizationRepository.findByOrganizationName(organizationName);
@@ -36,14 +33,12 @@ public class OrganizationService {
         }
 
         organization.setOrganizationName(organizationName);
-//        organization.setProductName(productName);
         organization.setLogin(login);
         organization.setPassword(password);
         organization.setMail(mail);
         organization.setPhone(phone);
         organization.setDescription(description);
         organization.setRole(role);
-//        organization.getProductList().add(product);
 
         organizationRepository.save(organization);
     }
@@ -56,9 +51,5 @@ public class OrganizationService {
         return organizationRepository.findAll()
                 .stream()
                 .anyMatch(x -> x.getOrganizationName().equalsIgnoreCase(name));
-    }
-
-    private Product createClearProduct(final String productName) {
-        return new Product(productName, 0D, 0D, 0D, 0, 0, 0,  " - ");
     }
 }

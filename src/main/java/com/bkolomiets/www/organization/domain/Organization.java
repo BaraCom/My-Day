@@ -1,5 +1,6 @@
 package com.bkolomiets.www.organization.domain;
 
+import com.bkolomiets.www.data_by_product.DataByProduct;
 import com.bkolomiets.www.products.domain.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -59,4 +60,7 @@ public class Organization {
             joinColumns = @JoinColumn(name = "organization_id"),
             inverseJoinColumns = @JoinColumn(name = "product_id"))
     private Set<Product> productList = new HashSet<>();
+
+    @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<DataByProduct> dataByProduct = new HashSet<>();
 }

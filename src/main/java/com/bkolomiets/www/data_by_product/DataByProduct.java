@@ -1,32 +1,28 @@
-package com.bkolomiets.www.products.domain;
+package com.bkolomiets.www.data_by_product;
 
-import com.bkolomiets.www.category.domain.Category;
 import com.bkolomiets.www.organization.domain.Organization;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import javax.persistence.*;
-import java.util.HashSet;
-import java.util.Set;
 
 /**
  * @author Borislav Kolomiets
  */
 @Entity
-@NoArgsConstructor
 @Getter
 @Setter
-public class Product {
+@NoArgsConstructor
+public class DataByProduct {
 
-    public Product(String productName/*, Double priceS, Double priceM, Double priceL, Integer weightS, Integer weightM, Integer weightL, String description*/) {
-        this.productName = productName;
-        /*this.priceS = priceS;
+    public DataByProduct(Double priceS, Double priceM, Double priceL, Integer weightS, Integer weightM, Integer weightL, String description) {
+        this.priceS = priceS;
         this.priceM = priceM;
         this.priceL = priceL;
         this.weightS = weightS;
         this.weightM = weightM;
         this.weightL = weightL;
-        this.description = description;*/
+        this.description = description;
     }
 
     @Id
@@ -36,7 +32,7 @@ public class Product {
     @Column(name = "product_name", length = 50, nullable = false)
     private String productName;
 
-    /*@Column(name = "price_s", length = 10)
+    @Column(name = "price_s", length = 10)
     private Double priceS;
 
     @Column(name = "price_m", length = 10)
@@ -56,12 +52,9 @@ public class Product {
 
     @Lob
     @Column(name = "description", nullable = false)
-    private String description;*/
+    private String description;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "productList")
-    private Set<Organization> organizationList = new HashSet<>();
-
-    @OneToOne
-    @JoinColumn(name = "category_id")
-    private Category category;
+    @ManyToOne
+    @JoinColumn(name = "organization_id")
+    private Organization organization;
 }

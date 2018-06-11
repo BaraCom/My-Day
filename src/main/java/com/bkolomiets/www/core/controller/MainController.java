@@ -52,22 +52,6 @@ public class MainController {
         return "login";
     }
 
-    /*@PostMapping("/login")
-    public String loginPost(@RequestParam final String username, @RequestParam final String password, final User user) {
-//        User userData = userRepository.findByUsername(user.getUsername());
-        User userData = userRepository.findByUsernameAndPassword(username, password);
-
-        if (userData.getRoles().stream().anyMatch(r -> r.equals(Role.ADMIN))) {
-            return "redirect:/all_products";
-        }
-
-        *//*if (userData != null) {
-            return "redirect:/login";
-        }*//*
-
-        return "redirect:/login";
-    }*/
-
     @GetMapping("/registration")
     public String registration(final Model model) {
         model.addAttribute("navItems", getNavBarByRole());

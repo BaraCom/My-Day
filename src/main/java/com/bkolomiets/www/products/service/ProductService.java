@@ -4,6 +4,7 @@ import com.bkolomiets.www.category.domain.Category;
 import com.bkolomiets.www.category.repository.ICategoryRepository;
 import com.bkolomiets.www.core.repository.IUserRepository;
 import com.bkolomiets.www.core.user_role.User;
+import com.bkolomiets.www.data_by_product.DataByProduct;
 import com.bkolomiets.www.organization.domain.Organization;
 import com.bkolomiets.www.organization.repository.OrganizationRepository;
 import com.bkolomiets.www.products.domain.Product;
@@ -36,17 +37,10 @@ public class ProductService {
                   , final String category) {
 
         Category byCategory = categoryRepository.findByCategory(category);
-
-        User user = userRepository.findByUsername(userName);
-        Organization organization = organizationRepository.findByLoginAndPassword(userName, user.getPassword());
+        Organization organization = getOrganizationByUserName(userName);
         Set<Product> productList = organization.getProductList();
-//        Set<Product> productList = getProductList(userName);
 
         Product product;
-
-        /*if (isNullCategory(byCategory)) {
-            return;
-        }*/
 
         if (productList.stream().anyMatch(p -> p.getProductName().equalsIgnoreCase(productName))) {
             // вывести сообщение, что такой продукт уже имеется и, что, если его хотят изменить, нужно зайти в раздел update product
@@ -59,45 +53,46 @@ public class ProductService {
         } else {
             product = new Product();
             product.setProductName(productName);
-            product.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
-            product.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
-            product.setPriceL(priceL.equals("") ? null : Double.valueOf(priceL));
-            product.setWeightS(weightS.equals("") ? null : Integer.valueOf(weightS));
-            product.setWeightM(weightM.equals("") ? null : Integer.valueOf(weightM));
-            product.setWeightL(weightL.equals("") ? null : Integer.valueOf(weightL));
-            product.setDescription(description);
             product.setCategory(byCategory);
         }
 
         productList.add(product);
 
-//        organizationRepository.save(organization);
+        Set<DataByProduct> dataByProductList = organization.getDataByProduct();
+
+        if (dataByProductList.stream().anyMatch(d -> d.getProductName().equalsIgnoreCase(productName))) {
+            return;
+        } else {
+            DataByProduct dataByProduct = new DataByProduct();
+
+            dataByProduct.setProductName(product.getProductName());
+            dataByProduct.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
+            dataByProduct.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
+            dataByProduct.setPriceL(priceL.equals("") ? null : Double.valueOf(priceL));
+            dataByProduct.setWeightS(weightS.equals("") ? null : Integer.valueOf(weightS));
+            dataByProduct.setWeightM(weightM.equals("") ? null : Integer.valueOf(weightM));
+            dataByProduct.setWeightL(weightL.equals("") ? null : Integer.valueOf(weightL));
+            dataByProduct.setDescription(description);
+            dataByProduct.setOrganization(organization);
+
+            dataByProductList.add(dataByProduct);
+        }
+
         productRepository.save(product);
-
-
-
-
-
-//        saveNewProductInDB(productName, product);
     }
 
-    public Set<Product> getProductList(final String userName) {
+    public Set<DataByProduct> getDataByProductList(final String userName) {
         User user = userRepository.findByUsername(userName);
         Organization organization = organizationRepository.findByLoginAndPassword(userName, user.getPassword());
 
-        return organization.getProductList();
+        return organization.getDataByProduct();
     }
 
-    private void saveNewProductInDB(final String productName, final Product product) {
-        Product productByName = productRepository.findByProductName(productName);
+    private Organization getOrganizationByUserName(final String userName) {
+        User user = userRepository.findByUsername(userName);
+        Organization organization = organizationRepository.findByLoginAndPassword(userName, user.getPassword());
 
-        if (isExistProductInDB(productByName)) {
-            productRepository.save(product);
-        }
-    }
-
-    private boolean isExistProductInDB(final Product product) {
-        return product == null;
+        return organization;
     }
 
     private boolean isNullCategory(final Category category) {
