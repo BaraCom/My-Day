@@ -11,8 +11,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Collection;
 import java.util.Collections;
 import static com.bkolomiets.www.core.service.MainService.getLogButtonByRole;
 import static com.bkolomiets.www.core.service.MainService.getNavBarByRole;

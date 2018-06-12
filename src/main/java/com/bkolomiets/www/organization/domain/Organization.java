@@ -1,6 +1,6 @@
 package com.bkolomiets.www.organization.domain;
 
-import com.bkolomiets.www.data_by_product.DataByProduct;
+import com.bkolomiets.www.data_by_product.domain.DataProduct;
 import com.bkolomiets.www.products.domain.Product;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -33,9 +33,6 @@ public class Organization {
     @Column(name = "organization_name", length = 50, nullable = false)
     private String organizationName;
 
-//    @Column(name = "product_name", length = 50, nullable = false)
-//    private String productName;
-
     @Column(name = "login", length = 50, nullable = false)
     private String login;
 
@@ -62,5 +59,5 @@ public class Organization {
     private Set<Product> productList = new HashSet<>();
 
     @OneToMany(mappedBy = "organization", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    private Set<DataByProduct> dataByProduct = new HashSet<>();
+    private Set<DataProduct> dataProduct = new HashSet<>();
 }

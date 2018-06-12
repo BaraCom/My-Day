@@ -1,11 +1,9 @@
 package com.bkolomiets.www.core.super_admin.service;
 
 import com.bkolomiets.www.core.user_role.Role;
-import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Service;
-
-import java.util.*;
-import static org.springframework.security.core.context.SecurityContextHolder.getContext;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * @author Borislav Kolomiets

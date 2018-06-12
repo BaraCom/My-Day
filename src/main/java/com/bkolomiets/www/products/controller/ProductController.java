@@ -1,22 +1,21 @@
 package com.bkolomiets.www.products.controller;
 
-import com.bkolomiets.www.core.service.MainService;
 import com.bkolomiets.www.products.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
 import static com.bkolomiets.www.core.service.MainService.getLogButtonByRole;
 import static com.bkolomiets.www.core.service.MainService.getNavBarByRole;
 
+/**
+ * @author Borislav Kolomiets
+ */
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductController {
@@ -28,7 +27,7 @@ public class ProductController {
 
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
-        model.addAttribute("dataByProductList", productService.getDataByProductList(currentPrincipalName));
+        model.addAttribute("dataByProductList", productService.getDataProductList(currentPrincipalName));
 
         return "all_products";
     }

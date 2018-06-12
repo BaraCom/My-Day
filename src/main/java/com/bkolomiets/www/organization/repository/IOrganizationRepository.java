@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
  * @author Borislav Kolomiets
  */
 @Repository
-public interface OrganizationRepository extends JpaRepository<Organization, Long> {
+public interface IOrganizationRepository extends JpaRepository<Organization, Long> {
     Organization findByOrganizationName(final String name);
 
     Organization findByLoginAndPassword(final String login, final String password);

@@ -44,11 +44,6 @@ public class SuperAdminController {
 
     @GetMapping("/add_organization")
     public String add(final Model model) {
-        organizationService.add("Waterok"/*, "water"*/, "loginooo", "Pas897ord", "e-mail"
-                , 380992223311L
-                , "Some description for this organization!!!"
-                , "ADMIN");
-
         List<Organization> organizationList = organizationService.getOrganizationList();
         int quantityOrganization = organizationList.size();
 
@@ -62,14 +57,14 @@ public class SuperAdminController {
 
     @PostMapping("/add_organization")
     public String addOrganization(@RequestParam("organizationName") final String organizationName
-//                                , @RequestParam("productName") final String productName
                                 , @RequestParam("username") final String username
                                 , @RequestParam("password") final String password
                                 , @RequestParam("mail") final String mail
                                 , @RequestParam("phone") final Long phone
                                 , @RequestParam("description") final String description
                                 , @RequestParam("role") final String role) {
-        organizationService.add(organizationName/*, productName*/, username, password, mail, phone, description, role);
+
+        organizationService.add(organizationName, username, password, mail, phone, description, role);
 
         User user = new User();
         user.setUsername(username);

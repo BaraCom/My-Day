@@ -23,7 +23,7 @@
 
 .nav-link {
     color: #d88f00 !important;
-    font-family: "Play";
+    font-family: 'Play', sans-serif;
     font-weight: 600;
     letter-spacing: 1px;
     text-shadow: 0px -2px 1px rgba(0,0,0,0.6);
@@ -87,7 +87,7 @@
 .username-input, .pass-input, .username-reg-input, .pass-reg-input, .repeat-reg-input {
     border: none;
     color: #00e3ee;
-    font-family: "Play";
+    font-family: 'Play', sans-serif;
     letter-spacing: 1px;
     margin-bottom: 3px;
     padding-left: 35px;
@@ -97,7 +97,7 @@
 
 .username-input::placeholder, .pass-input::placeholder, .username-reg-input::placeholder, .pass-reg-input::placeholder, .repeat-reg-input::placeholder {
     color: #4d3e00;
-    font-family: "Play";
+    font-family: 'Play', sans-serif;
     font-size: 14px;
     letter-spacing: 1px;
     vertical-align: center;
@@ -116,7 +116,7 @@
 @-webkit-keyframes autofillUserName {
     to {
         color: #00e3ee;
-        font-family: "Play";
+        font-family: 'Play', sans-serif;
         background: url("../img/logo/logo-reg-input-bg(206x31).png");
         letter-spacing: 1px;
     }
@@ -130,7 +130,7 @@
 @-webkit-keyframes autofillPass {
     to {
         color: #00e3ee;
-        font-family: "Play";
+        font-family: 'Play', sans-serif;
         background: url("../img/logo/pass-reg-input-bg(206x31).png");
         letter-spacing: 1px;
     }
@@ -167,7 +167,7 @@
     background-color: #ff83031c;
     box-shadow: 1px 0px 5px black;
     color: wheat;
-    font-family: "Play";
+    font-family: 'Play', sans-serif;
     font-size: 30px;
     font-weight: 600;
     margin-top: 50px;
@@ -233,14 +233,14 @@
 }
 
 .add-product-col>.invalid-feedback {
-    font-family: "Play";
+    font-family: 'Play', sans-serif;
     font-size: 14px;
     text-shadow: 0px 1px 1px black;
 }
 
 .add-product-label {
     color: #dc3545;
-    font-family: "Play";
+    font-family: 'Play', sans-serif;
     text-shadow: 0px 1px 1px black;
 }
 

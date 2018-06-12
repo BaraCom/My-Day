@@ -1,7 +1,9 @@
 package com.bkolomiets.www.organization.service;
 
+import com.bkolomiets.www.core.repository.IUserRepository;
+import com.bkolomiets.www.core.user_role.User;
 import com.bkolomiets.www.organization.domain.Organization;
-import com.bkolomiets.www.organization.repository.OrganizationRepository;
+import com.bkolomiets.www.organization.repository.IOrganizationRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +15,8 @@ import java.util.List;
 @Service
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class OrganizationService {
-    private final OrganizationRepository organizationRepository;
+    private final IOrganizationRepository organizationRepository;
+    private final IUserRepository userRepository;
 
     public void add(final String organizationName
                   , final String login
@@ -45,6 +48,12 @@ public class OrganizationService {
 
     public List<Organization> getOrganizationList() {
         return organizationRepository.findAll();
+    }
+
+    public Organization getOrganizationByUserName(final String userName) {
+        User user = userRepository.findByUsername(userName);
+
+        return organizationRepository.findByLoginAndPassword(userName, user.getPassword());
     }
 
     private boolean isExistOrganizationName(final String name) {

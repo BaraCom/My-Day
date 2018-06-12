@@ -1,4 +1,4 @@
-package com.bkolomiets.www.data_by_product;
+package com.bkolomiets.www.data_by_product.domain;
 
 import com.bkolomiets.www.organization.domain.Organization;
 import lombok.Getter;
@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class DataByProduct {
+public class DataProduct {
 
-    public DataByProduct(Double priceS, Double priceM, Double priceL, Integer weightS, Integer weightM, Integer weightL, String description) {
+    public DataProduct(Double priceS, Double priceM, Double priceL, Integer weightS, Integer weightM, Integer weightL, String description) {
         this.priceS = priceS;
         this.priceM = priceM;
         this.priceL = priceL;
