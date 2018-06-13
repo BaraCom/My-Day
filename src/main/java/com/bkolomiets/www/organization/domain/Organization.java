@@ -18,7 +18,7 @@ import java.util.Set;
 @Setter
 public class Organization {
 
-    public Organization(String organizationName, String login, String password, String mail, Long phone) {
+    public Organization(String organizationName, String login, String password, String mail, String phone) {
         this.organizationName = organizationName;
         this.login = login;
         this.password = password;
@@ -42,8 +42,9 @@ public class Organization {
     @Column(name = "mail", length = 50, nullable = false)
     private String mail;
 
+    @Lob
     @Column(name = "phone", length = 12, nullable = false)
-    private Long phone;
+    private String phone;
 
     @Lob
     @Column(name = "description", nullable = false)

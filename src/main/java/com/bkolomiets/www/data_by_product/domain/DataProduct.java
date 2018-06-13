@@ -15,7 +15,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 public class DataProduct {
 
-    public DataProduct(Double priceS, Double priceM, Double priceL, Integer weightS, Integer weightM, Integer weightL, String description) {
+    public DataProduct(Double priceS, Double priceM, Double priceL, Double weightS, Double weightM, Double weightL, String description) {
         this.priceS = priceS;
         this.priceM = priceM;
         this.priceL = priceL;
@@ -42,13 +42,13 @@ public class DataProduct {
     private Double priceL;
 
     @Column(name = "weight_s", length = 10)
-    private Integer weightS;
+    private Double weightS;
 
     @Column(name = "weight_m", length = 10)
-    private Integer weightM;
+    private Double weightM;
 
     @Column(name = "weight_l", length = 10)
-    private Integer weightL;
+    private Double weightL;
 
     @Lob
     @Column(name = "description", nullable = false)

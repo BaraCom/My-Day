@@ -1,0 +1,111 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/fragments/header :: head"/>
+    <body class="add-product-bg">
+        <nav th:replace="/fragments/navbar :: navbar"/>
+
+        <div class="all-products-title">
+            <p class="title">
+                Update product
+            </p>
+        </div>
+
+        <!--th:each="data : ${dataByProductList}"-->
+
+        <form class="update-product-form" method="post" th:action="@{/update_product}">
+            <table class="table">
+                <thead>
+                <tr class="all-products-tr">
+                    <th scope="col">Check for update</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Product name</th>
+                    <th scope="col">Price S</th>
+                    <th scope="col">Price M</th>
+                    <th scope="col">Price L</th>
+                    <th scope="col">Weight S</th>
+                    <th scope="col">Weight M</th>
+                    <th scope="col">Weight L</th>
+                    <th scope="col">Description</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr class="all-products-tb-tr" th:each="data : ${dataByProductList}">
+                    <td>
+                        <!--<input name="productName" type="checkbox"/>-->
+                        <!--<input th:value="${data.getProductName()}" name="productName" type="hidden"/>-->
+                    </td>
+                    <th scope="row" th:with="i = ''" th:text="${#ids.seq(i)}"/>
+                    <td th:text="${data.getProductName()}"/>
+                    <td th:text="${data.getPriceS()}" />
+                    <td th:text="${data.getPriceM()}"/>
+                    <td th:text="${data.getPriceL()}"/>
+                    <td th:text="${data.getWeightS()}"/>
+                    <td th:text="${data.getWeightM()}"/>
+                    <td th:text="${data.getWeightL()}"/>
+                    <td>
+                        <div class="dropdown">
+                            <button class="all-products-dropdown-btn btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                Show description
+                            </button>
+                            <div class="all-products-dropdown dropdown-menu w-250" aria-labelledby="dropdownMenu2">
+                                <p class="all-products-dropdown-p" th:text="${data.getDescription()}"/>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+
+            <!--<div class="form-row">
+                <div class="add-product-col col-md-2 mb-3">
+                    <input name="productName" type="text" class="form-control" id="validationCustom01" th:value="${data.getProductName()}" th:placeholder="${data.getProductName()}" required>
+                    <div class="invalid-feedback">
+                        Please, entry is correct product name!
+                    </div>
+                </div>
+            </div>
+            <div class="form-row mt-4">
+                <div class="add-product-col col-md-2 mb-3">
+                    <input name="priceS" type="text" class="form-control" id="validationCustom02" placeholder="Price S">
+                </div>
+                <div class="add-product-col col-md-2 mb-3">
+                    <input name="priceM" type="text" class="form-control" id="validationCustom03" placeholder="Price M">
+                </div>
+                <div class="add-product-col col-md-2 mb-3">
+                    <input name="priceL" type="text" class="form-control" id="validationCustom04" placeholder="Price L">
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="add-product-col col-md-2 mb-3">
+                    <input name="weightS" type="text" class="form-control" id="validationCustom05" placeholder="Weight S">
+                </div>
+                <div class="add-product-col col-md-2 mb-3">
+                    <input name="weightM" type="text" class="form-control" id="validationCustom06" placeholder="Weight M">
+                </div>
+                <div class="add-product-col col-md-2 mb-3">
+                    <input name="weightL" type="text" class="form-control" id="validationCustom07" placeholder="Weight L">
+                </div>
+            </div>
+            <div class="form-row mt-4">
+                <div class="add-product-col col-md-4 mb-3">
+                    <textarea name="description" type="text" class="form-control" id="validationCustom08" placeholder="Description" required></textarea>
+                    <div class="invalid-feedback">
+                        Please,write a description!
+                    </div>
+                </div>
+            </div>
+            <div class="form-row mt-4">
+                <div class="add-product-col col-md-4 mb-3">
+                    <label class="add-product-label" for="exampleFormControlSelect1">Select a category!</label>
+                    <select name="category" class="form-control" id="exampleFormControlSelect1">
+                        <option>Choice...</option>
+                    </select>
+                </div>
+            </div>-->
+
+            <button type="submit" class="update-product-btn btn btn-outline-success" data-toggle="modal" data-target=".bd-example-modal-sm">
+                Update
+            </button>
+        </form>
+    </body>
+</html>

@@ -31,6 +31,7 @@
 }
 
 .nav-link:hover {
+    border-left: 3px solid #00e3ee;
     color: #00e3ee !important;
 }
 
@@ -96,10 +97,11 @@
 }
 
 .username-input::placeholder, .pass-input::placeholder, .username-reg-input::placeholder, .pass-reg-input::placeholder, .repeat-reg-input::placeholder {
-    color: #4d3e00;
+    color: #042c47;
     font-family: 'Play', sans-serif;
     font-size: 14px;
     letter-spacing: 1px;
+    text-shadow: 0px 1px 1px #006269;
     vertical-align: center;
 }
 
@@ -146,9 +148,30 @@
 }
 
 
+/*----------------------- LohIn Btn ---------------------*/
+.log-btn {
+    background: url("../img/logo/logIn-btn(76x26).png") center no-repeat;
+    border: none;
+    margin-top: 8px;
+    width: 76px;
+}
+
+.log-btn:hover {
+    cursor: pointer;
+}
+
+
 /*-------------------------Reg Btn-----------------------*/
 .reg-btn {
+    background: url("../img/logo/reg-btn(76x26).png") center no-repeat;
+    border: none;
     float: right;
+    margin-top: 8px;
+    width: 76px;
+}
+
+.reg-btn:hover {
+    cursor: pointer;
 }
 
 
@@ -221,6 +244,12 @@
     background-color: #89deffb0;
 }
 
+.all-products-dropdown-p {
+    color: darkmagenta;
+    font-family: 'Play', sans-serif;
+    padding: 5px;
+}
+
 
 /*--------------------------------------- Add product -----------------------------------------------*/
 .add-product-form {
@@ -271,6 +300,13 @@
     margin: 0px;
 }
 
+
+/*------------------------------------ Update Product ----------------------------------------------*/
+.update-product-btn {
+    float: right;
+    margin: 0px 10px;
+}
+
 /*---------------------------------------- @media ---------------------------------------------------*/
 
 @media(max-width: 1900px) {
@@ -307,6 +343,13 @@
 
     .all-products-bg, .add-product-bg {
         background: url("../img/bg/all-products-bg(1230x700).jpg") no-repeat fixed center;
+    }
+}
+
+@media(max-width: 1200px) {
+    .login-background {
+        background: url("../img/logo/logo-bg(1200x950).jpg") no-repeat fixed center;
+        background-size: cover;
     }
 }
 

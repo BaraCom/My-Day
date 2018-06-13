@@ -22,7 +22,7 @@ public class OrganizationService {
                   , final String login
                   , final String password
                   , final String mail
-                  , final Long phone
+                  , final String phone
                   , final String description
                   , final String role) {
         Organization organization;

@@ -7,11 +7,24 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-ul navbar-nav mr-auto" >
+        <ul class="navbar-ul navbar-nav mr-auto">
             <li class="nav-item" th:each="nav : ${navItems}">
                 <a class="nav-link mx-2" th:href="${nav.getKey()}" th:text="${nav.getValue()}"/>
             </li>
         </ul>
+        <!--<ul class="navbar-ul navbar-nav mr-auto">
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Dropdown
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                </div>
+            </li>
+        </ul>-->
         <div th:if="${isLogged}">
             <h5 class="user-name form-inline mx-2 my-lg-0">
                 Hello, [[${#httpServletRequest.remoteUser}]]!
@@ -25,4 +38,17 @@
             <a class="btn btn-sm btn-success" href="/login">Sing In</a>
         </div>
     </div>
+
+    <!--<li class="nav-item dropdown">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Dropdown
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <a class="dropdown-item" href="#">Action</a>
+            <a class="dropdown-item" href="#">Another action</a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" href="#">Something else here</a>
+        </div>
+    </li>-->
+
 </nav>

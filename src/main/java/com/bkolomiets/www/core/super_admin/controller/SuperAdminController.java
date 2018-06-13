@@ -60,7 +60,7 @@ public class SuperAdminController {
                                 , @RequestParam("username") final String username
                                 , @RequestParam("password") final String password
                                 , @RequestParam("mail") final String mail
-                                , @RequestParam("phone") final Long phone
+                                , @RequestParam("phone") final String phone
                                 , @RequestParam("description") final String description
                                 , @RequestParam("role") final String role) {
 

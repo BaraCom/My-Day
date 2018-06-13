@@ -100,9 +100,9 @@ public class ProductService {
         dataProduct.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
         dataProduct.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
         dataProduct.setPriceL(priceL.equals("") ? null : Double.valueOf(priceL));
-        dataProduct.setWeightS(weightS.equals("") ? null : Integer.valueOf(weightS));
-        dataProduct.setWeightM(weightM.equals("") ? null : Integer.valueOf(weightM));
-        dataProduct.setWeightL(weightL.equals("") ? null : Integer.valueOf(weightL));
+        dataProduct.setWeightS(weightS.equals("") ? null : Double.valueOf(weightS));
+        dataProduct.setWeightM(weightM.equals("") ? null : Double.valueOf(weightM));
+        dataProduct.setWeightL(weightL.equals("") ? null : Double.valueOf(weightL));
         dataProduct.setDescription(description);
         dataProduct.setOrganization(organization);
 

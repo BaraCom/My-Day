@@ -35,7 +35,8 @@ public class MainService {
     private static Map<String, String> getUserNavBar() {
         Map<String,String> userItems = new LinkedHashMap<>();
         userItems.put("/", "Home");
-        userItems.put("#", "My purchases");
+        userItems.put("/about", "About");
+        userItems.put("/user/my_purchases", "My purchases");
 
         return userItems;
     }
@@ -43,10 +44,11 @@ public class MainService {
     private static Map<String, String> getAdminNavBar() {
         Map<String, String> adminItems = new LinkedHashMap<>();
         adminItems.put("/", "Home");
-        adminItems.put("/add_product", "Add product");
-        adminItems.put("/all_products", "All products");
-        adminItems.put("/update_product", "Update products list");
-        adminItems.put("/delete_product", "Delete product");
+        adminItems.put("/admin/about", "About");
+        adminItems.put("/admin/add_product", "Add product");
+        adminItems.put("/admin/all_products", "All products");
+        adminItems.put("/admin/update_product", "Update products list");
+        adminItems.put("/admin/delete_product", "Delete product");
 
         return adminItems;
     }
@@ -59,6 +61,7 @@ public class MainService {
         superAdminItems.put("/super_admin/update_organization", "Update organization");
         superAdminItems.put("/super_admin/delete_organization", "Delete organization");
         superAdminItems.put("/super_admin/all_products", "All products");
+        superAdminItems.put("/super_admin/add_category", "Add category");
 
         return superAdminItems;
     }
@@ -66,6 +69,7 @@ public class MainService {
     private static Map<String, String> getAnonymousNavBar() {
         Map<String, String> anonymousItems = new LinkedHashMap<>();
         anonymousItems.put("/", "Home");
+        anonymousItems.put("/about", "About");
 
         return anonymousItems;
     }

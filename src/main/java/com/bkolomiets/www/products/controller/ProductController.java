@@ -56,4 +56,22 @@ public class ProductController {
 
         return "redirect:/all_products";
     }
+
+    @GetMapping("/update_product")
+    public String updateProducts(final Model model, @AuthenticationPrincipal final User user) {
+        String currentPrincipalName = user.getUsername();
+
+        model.addAttribute("navItems", getNavBarByRole());
+        model.addAttribute("isLogged", getLogButtonByRole());
+        model.addAttribute("dataByProductList", productService.getDataProductList(currentPrincipalName));
+
+        return "update_product";
+    }
+
+    @PostMapping("/update_product")
+    public String updateProductPost(@RequestParam final String productName) {
+        System.out.println(productName);
+
+        return "redirect:/update_product";
+    }
 }
