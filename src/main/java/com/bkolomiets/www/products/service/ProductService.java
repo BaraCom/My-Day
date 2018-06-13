@@ -57,6 +57,20 @@ public class ProductService {
         productRepository.save(product);
     }
 
+    public void updateDataProduct(final String userName
+                                , final String productName
+                                , final String priceS
+                                , final String priceM
+                                , final String priceL
+                                , final String weightS
+                                , final String weightM
+                                , final String weightL
+                                , final String description
+                                , final String category) {
+
+
+    }
+
     public Set<DataProduct> getDataProductList(final String userName) {
         User user = userRepository.findByUsername(userName);
         Organization organization = organizationRepository.findByLoginAndPassword(userName, user.getPassword());

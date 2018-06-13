@@ -252,8 +252,10 @@
 
 
 /*--------------------------------------- Add product -----------------------------------------------*/
-.add-product-form {
+.add-product-form, .update-product-form {
     background-color: #0c546045;
+    max-width: 700px;
+    margin: 40px auto 40px auto;
     padding: 20px;
 }
 
@@ -267,7 +269,7 @@
     text-shadow: 0px 1px 1px black;
 }
 
-.add-product-label {
+.add-product-label, .update-product-label {
     color: #dc3545;
     font-family: 'Play', sans-serif;
     text-shadow: 0px 1px 1px black;
@@ -302,9 +304,13 @@
 
 
 /*------------------------------------ Update Product ----------------------------------------------*/
-.update-product-btn {
+.update-product-btn, .add-product-btn {
     float: right;
-    margin: 0px 10px;
+    margin: -35px 10px 0px 10px;
+}
+
+.form-control {
+    font-family: 'Play', sans-serif;
 }
 
 /*---------------------------------------- @media ---------------------------------------------------*/

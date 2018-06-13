@@ -11,9 +11,9 @@
         </div>
 
         <!--th:each="data : ${dataByProductList}"-->
-
-        <form class="update-product-form" method="post" th:action="@{/update_product}">
-            <table class="table">
+        <div class="container">
+            <form class="update-product-form was-validated" method="post" th:action="@{/update_product}">
+            <!--<table class="table">
                 <thead>
                 <tr class="all-products-tr">
                     <th scope="col">Check for update</th>
@@ -31,8 +31,8 @@
                 <tbody>
                 <tr class="all-products-tb-tr" th:each="data : ${dataByProductList}">
                     <td>
-                        <!--<input name="productName" type="checkbox"/>-->
-                        <!--<input th:value="${data.getProductName()}" name="productName" type="hidden"/>-->
+                        &lt;!&ndash;<input name="productName" type="checkbox"/>&ndash;&gt;
+                        &lt;!&ndash;<input th:value="${data.getProductName()}" name="productName" type="hidden"/>&ndash;&gt;
                     </td>
                     <th scope="row" th:with="i = ''" th:text="${#ids.seq(i)}"/>
                     <td th:text="${data.getProductName()}"/>
@@ -54,7 +54,7 @@
                     </td>
                 </tr>
                 </tbody>
-            </table>
+            </table>-->
 
             <!--<div class="form-row">
                 <div class="add-product-col col-md-2 mb-3">
@@ -102,10 +102,20 @@
                     </select>
                 </div>
             </div>-->
+                <div class="form-row my-4">
+                    <div class="update-product-col col-md-4 mb-3">
+                        <label class="update-product-label" for="exampleFormControlSelect1">Select a product!</label>
+                        <select name="product" class="form-control" id="exampleFormControlSelect1">
+                            <option>Choice...</option>
+                            <option th:each="product : ${dataByProductList}" th:text="${product.getProductName()}"/>
+                        </select>
+                    </div>
+                </div>
 
-            <button type="submit" class="update-product-btn btn btn-outline-success" data-toggle="modal" data-target=".bd-example-modal-sm">
-                Update
-            </button>
-        </form>
+                <button type="submit" class="update-product-btn btn btn-outline-success" data-toggle="modal" data-target=".bd-example-modal-sm">
+                    Update
+                </button>
+            </form>
+        </div>
     </body>
 </html>

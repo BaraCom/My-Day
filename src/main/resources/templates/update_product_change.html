@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="/fragments/header :: head"/>
+    <body class="add-product-bg">
+        <nav th:replace="/fragments/navbar :: navbar"/>
+
+        <!-- Modal -->
+        <div class="modal-add-product modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
+                <div class="modal-content">
+                    <p class="modal-content-p"/>
+                </div>
+            </div>
+        </div>
+
+        <div class="add-product-title">
+            <p class="title">
+                Update product
+            </p>
+        </div>
+
+        <div class="container">
+            <form class="update-product-form was-validated" method="post" th:action="@{/update_product_change}">
+                <div class="form-row">
+                    <div class="update-product-col col-md-2 mb-3">
+                        <input name="productName" th:value="${dataProduct.getProductName()}" type="text" class="form-control" id="validationCustom01" placeholder="Product name" required>
+                        <div class="invalid-feedback">
+                            Please, entry is correct product name!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="update-product-col col-md-2 mb-3">
+                        <input name="priceS" th:value="${dataProduct.getPriceS()}" type="text" class="form-control" id="validationCustom02" placeholder="Price S">
+                    </div>
+                    <div class="update-product-col col-md-2 mb-3">
+                        <input name="priceM" th:value="${dataProduct.getPriceM()}" type="text" class="form-control" id="validationCustom03" placeholder="Price M">
+                    </div>
+                    <div class="update-product-col col-md-2 mb-3">
+                        <input name="priceL" th:value="${dataProduct.getPriceL()}" type="text" class="form-control" id="validationCustom04" placeholder="Price L">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="update-product-col col-md-2 mb-3">
+                        <input name="weightS" th:value="${dataProduct.getWeightS()}" type="text" class="form-control" id="validationCustom05" placeholder="Weight S">
+                    </div>
+                    <div class="update-product-col col-md-2 mb-3">
+                        <input name="weightM" th:value="${dataProduct.getWeightM()}" type="text" class="form-control" id="validationCustom06" placeholder="Weight M">
+                    </div>
+                    <div class="update-product-col col-md-2 mb-3">
+                        <input name="weightL" th:value="${dataProduct.getWeightL()}" type="text" class="form-control" id="validationCustom07" placeholder="Weight L">
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="update-product-col col-md-4 mb-3">
+                        <textarea name="description" th:text="${dataProduct.getDescription()}" class="form-control" id="validationCustom08" placeholder="Description" required></textarea>
+                        <div class="invalid-feedback">
+                            Please,write a description!
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row mt-4">
+                    <div class="update-product-col col-md-4 mb-3">
+                        <label class="update-product-label" for="exampleFormControlSelect1">Select a category!</label>
+                        <select name="category" class="form-control" id="exampleFormControlSelect1">
+                            <option>Choice...</option>
+                            <option>1</option>
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                </div>
+
+                <button type="button" class="update-product-btn btn btn-outline-success" data-toggle="modal" data-target=".bd-example-modal-sm">
+                    Update
+                </button>
+            </form>
+        </div>
+    </body>
+</html>

@@ -1,5 +1,7 @@
 package com.bkolomiets.www.products.controller;
 
+import com.bkolomiets.www.data_by_product.domain.DataProduct;
+import com.bkolomiets.www.data_by_product.repository.IDataProductRepository;
 import com.bkolomiets.www.products.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +22,8 @@ import static com.bkolomiets.www.core.service.MainService.getNavBarByRole;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductController {
     private final ProductService productService;
+    private final IDataProductRepository dataProductRepository;
+    private DataProduct dataProduct;
 
     @GetMapping("/all_products")
     public String allProducts(final Model model, @AuthenticationPrincipal final User user) {
@@ -69,9 +73,35 @@ public class ProductController {
     }
 
     @PostMapping("/update_product")
-    public String updateProductPost(@RequestParam final String productName) {
-        System.out.println(productName);
+    public /*void*/ String updateProductPost(@RequestParam final String product) {
+        dataProduct = dataProductRepository.findByProductName(product);
 
-        return "redirect:/update_product";
+        return "redirect:/update_product_change";
+    }
+
+    @GetMapping("/update_product_change")
+    public String updateProductsChange(final Model model) {
+        model.addAttribute("navItems", getNavBarByRole());
+        model.addAttribute("isLogged", getLogButtonByRole());
+        model.addAttribute("dataProduct", dataProduct);
+
+        return "update_product_change";
+    }
+
+    @PostMapping("/update_product_change")
+    public String updateProductsChangePost(@RequestParam final String productName
+                                         , @RequestParam final String priceS
+                                         , @RequestParam final String priceM
+                                         , @RequestParam final String priceL
+                                         , @RequestParam final String weightS
+                                         , @RequestParam final String weightM
+                                         , @RequestParam final String weightL
+                                         , @RequestParam final String description
+                                         , @RequestParam final String category
+                                         , @AuthenticationPrincipal final User user) {
+
+        productService.updateDataProduct(user.getUsername(), productName, priceS, priceM, priceL, weightS, weightM, weightL, description, category);
+
+        return "redirect:/all_products";
     }
 }
