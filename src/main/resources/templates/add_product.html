@@ -5,30 +5,10 @@
         <nav th:replace="/fragments/navbar :: navbar"/>
 
         <!-- Modal -->
-        <!--<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
+        <div class="modal-add-product modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-sm">
                 <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        ...
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Save changes</button>
-                    </div>
-                </div>
-            </div>
-        </div>-->
-
-        <div class="g-hidden">
-            <div class="box-modal" id="exampleModal3">
-                <div class="box-modal_close arcticmodal-close">
-                    close
+                    <p class="modal-content-p"/>
                 </div>
             </div>
         </div>
@@ -85,7 +65,8 @@
                 <div class="form-row mt-4">
                     <div class="add-product-col col-md-4 mb-3">
                         <label class="add-product-label" for="exampleFormControlSelect1">Select a category!</label>
-                        <select name="category" class="form-control" id="exampleFormControlSelect1" required>
+                        <select name="category" class="form-control" id="exampleFormControlSelect1">
+                            <option>Choice...</option>
                             <option>1</option>
                             <option>2</option>
                             <option>3</option>
@@ -95,7 +76,7 @@
                     </div>
                 </div>
 
-                <button type="submit" class="add-product-btn btn btn-outline-success" data-toggle="modal" data-target="#exampleModal">
+                <button type="button" class="add-product-btn btn btn-outline-success" data-toggle="modal" data-target=".bd-example-modal-sm">
                     Add
                 </button>
             </form>
