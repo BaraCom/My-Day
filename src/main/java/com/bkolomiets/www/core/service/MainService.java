@@ -62,6 +62,7 @@ public class MainService {
         superAdminItems.put("/super_admin/delete_organization", "Delete organization");
         superAdminItems.put("/super_admin/all_products", "All products");
         superAdminItems.put("/super_admin/add_category", "Add category");
+        superAdminItems.put("/super_admin/all_categories", "All categories");
 
         return superAdminItems;
     }

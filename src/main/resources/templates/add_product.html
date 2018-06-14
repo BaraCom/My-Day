@@ -31,29 +31,29 @@
                 </div>
                 <div class="form-row mt-4">
                     <div class="add-product-col col-md-2 mb-3">
-                        <input name="priceS" type="text" class="form-control" id="validationCustom02" placeholder="Price S">
+                        <input name="priceS" type="text" class="form-control" placeholder="Price S">
                     </div>
                     <div class="add-product-col col-md-2 mb-3">
-                        <input name="priceM" type="text" class="form-control" id="validationCustom03" placeholder="Price M">
+                        <input name="priceM" type="text" class="form-control" placeholder="Price M">
                     </div>
                     <div class="add-product-col col-md-2 mb-3">
-                        <input name="priceL" type="text" class="form-control" id="validationCustom04" placeholder="Price L">
+                        <input name="priceL" type="text" class="form-control" placeholder="Price L">
                     </div>
                 </div>
                 <div class="form-row">
                     <div class="add-product-col col-md-2 mb-3">
-                        <input name="weightS" type="text" class="form-control" id="validationCustom05" placeholder="Weight S">
+                        <input name="weightS" type="text" class="form-control" placeholder="Weight S">
                     </div>
                     <div class="add-product-col col-md-2 mb-3">
-                        <input name="weightM" type="text" class="form-control" id="validationCustom06" placeholder="Weight M">
+                        <input name="weightM" type="text" class="form-control" placeholder="Weight M">
                     </div>
                     <div class="add-product-col col-md-2 mb-3">
-                        <input name="weightL" type="text" class="form-control" id="validationCustom07" placeholder="Weight L">
+                        <input name="weightL" type="text" class="form-control" placeholder="Weight L">
                     </div>
                 </div>
                 <div class="form-row mt-4">
                     <div class="add-product-col col-md-4 mb-3">
-                        <textarea name="description" type="text" class="form-control" id="validationCustom08" placeholder="Description" required></textarea>
+                        <textarea name="description" type="text" class="form-control" placeholder="Description" required></textarea>
                         <div class="invalid-feedback">
                             Please,write a description!
                         </div>
@@ -62,13 +62,9 @@
                 <div class="form-row mt-4">
                     <div class="add-product-col col-md-4 mb-3">
                         <label class="add-product-label" for="exampleFormControlSelect1">Select a category!</label>
-                        <select name="category" class="form-control" id="exampleFormControlSelect1">
+                        <select name="category" class="form-control" id="exampleFormControlSelect1" th:each="category : ${categoryList}">
                             <option>Choice...</option>
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
-                            <option>5</option>
+                            <option th:text="${category.getCategory()}"/>
                         </select>
                     </div>
                 </div>

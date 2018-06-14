@@ -12,9 +12,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import static com.bkolomiets.www.core.service.MainService.getLogButtonByRole;
-import static com.bkolomiets.www.core.service.MainService.getNavBarByRole;
-
 /**
  * @author Borislav Kolomiets
  */
@@ -60,5 +57,34 @@ public class AdminController {
         productController.updateProducts(model, user);
 
         return "update_product";
+    }
+
+    @PostMapping("/update_product")
+    public String updateProductPost(@RequestParam final String product) {
+        productController.updateProductPost(product);
+
+        return "redirect:/update_product_change";
+    }
+
+    @GetMapping("/update_product_change")
+    public String updateProductsChange(final Model model) {
+        productController.updateProductsChange(model);
+
+        return "update_product_change";
+    }
+
+    @PostMapping("/update_product_change")
+    public String updateProductsChangePost(@RequestParam final String productName
+                                         , @RequestParam final String priceS
+                                         , @RequestParam final String priceM
+                                         , @RequestParam final String priceL
+                                         , @RequestParam final String weightS
+                                         , @RequestParam final String weightM
+                                         , @RequestParam final String weightL
+                                         , @RequestParam final String description
+                                         , @AuthenticationPrincipal final User user) {
+        productController.updateProductsChangePost(productName, priceS, priceM, priceL, weightS, weightM, weightL, description, user);
+
+        return "redirect:/all_products";
     }
 }

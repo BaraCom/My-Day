@@ -27,11 +27,11 @@ public class ProductController {
 
     @GetMapping("/all_products")
     public String allProducts(final Model model, @AuthenticationPrincipal final User user) {
-        String currentPrincipalName = user.getUsername();
+        String userName = user.getUsername();
 
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
-        model.addAttribute("dataByProductList", productService.getDataProductList(currentPrincipalName));
+        model.addAttribute("dataByProductList", productService.getDataProductList(userName));
 
         return "all_products";
     }
@@ -40,6 +40,7 @@ public class ProductController {
     public String addProduct(final Model model) {
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
+        model.addAttribute("categoryList", productService.getCategoryList());
 
         return "add_product";
     }
@@ -55,7 +56,6 @@ public class ProductController {
                               , @RequestParam final String description
                               , @RequestParam final String category
                               , @AuthenticationPrincipal final User user) {
-
         productService.add(user.getUsername(), productName, priceS, priceM, priceL, weightS, weightM, weightL, description, category);
 
         return "redirect:/all_products";
@@ -73,7 +73,7 @@ public class ProductController {
     }
 
     @PostMapping("/update_product")
-    public /*void*/ String updateProductPost(@RequestParam final String product) {
+    public String updateProductPost(@RequestParam final String product) {
         dataProduct = dataProductRepository.findByProductName(product);
 
         return "redirect:/update_product_change";
@@ -97,10 +97,8 @@ public class ProductController {
                                          , @RequestParam final String weightM
                                          , @RequestParam final String weightL
                                          , @RequestParam final String description
-                                         , @RequestParam final String category
                                          , @AuthenticationPrincipal final User user) {
-
-        productService.updateDataProduct(user.getUsername(), productName, priceS, priceM, priceL, weightS, weightM, weightL, description, category);
+        productService.updateDataProduct(user.getUsername(), productName, priceS, priceM, priceL, weightS, weightM, weightL, description);
 
         return "redirect:/all_products";
     }

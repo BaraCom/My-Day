@@ -1,5 +1,6 @@
 package com.bkolomiets.www.core.super_admin.controller;
 
+import com.bkolomiets.www.category.service.CategoryService;
 import com.bkolomiets.www.core.repository.IUserRepository;
 import com.bkolomiets.www.core.service.MainService;
 import com.bkolomiets.www.core.user_role.User;
@@ -29,6 +30,7 @@ import static java.util.Collections.singleton;
 public class SuperAdminController {
     private final OrganizationService organizationService;
     private final IUserRepository userRepository;
+    private final CategoryService categoryService;
 
     @GetMapping
     public String superAdmin(final Model model) {
@@ -85,6 +87,29 @@ public class SuperAdminController {
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", MainService.getLogButtonByRole());
 
-        return "/all_organization";
+        return "all_organization";
+    }
+
+    @PostMapping("/add_category")
+    public String addCategoryPost(@RequestParam final String newCategory) {
+        categoryService.addCategory(newCategory);
+
+        return "redirect:/super_admin/all_categories";
+    }
+
+    @GetMapping("/add_category")
+    public String addCategory(final Model model) {
+        model.addAttribute("navItems", getNavBarByRole());
+        model.addAttribute("isLogged", MainService.getLogButtonByRole());
+
+        return "add_category";
+    }
+
+    @GetMapping("/all_categories")
+    public String allCategories(final Model model) {
+        model.addAttribute("navItems", getNavBarByRole());
+        model.addAttribute("isLogged", MainService.getLogButtonByRole());
+
+        return "all_categories";
     }
 }

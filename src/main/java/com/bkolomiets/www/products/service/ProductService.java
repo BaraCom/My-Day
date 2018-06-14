@@ -13,6 +13,7 @@ import com.bkolomiets.www.products.repository.IProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -37,23 +38,20 @@ public class ProductService {
                   , final String weightL
                   , final String description
                   , final String category) {
-
         Category byCategory = categoryRepository.findByCategory(category);
         Organization organization = organizationService.getOrganizationByUserName(userName);
         Set<Product> productList = organization.getProductList();
         Set<DataProduct> dataProductList = organization.getDataProduct();
-
         Product product = getProduct(productName, byCategory);
-        productList.add(product);
 
         if (isExistProductInOrganization(userName, productName)) {
             return;
         } else {
+            productList.add(product);
             DataProduct dataProduct = createNewDataProduct(product, priceS, priceM, priceL, weightS, weightM, weightL, description, organization);
 
             dataProductList.add(dataProduct);
         }
-
         productRepository.save(product);
     }
 
@@ -65,10 +63,26 @@ public class ProductService {
                                 , final String weightS
                                 , final String weightM
                                 , final String weightL
-                                , final String description
-                                , final String category) {
+                                , final String description) {
 
+        Organization organization = organizationService.getOrganizationByUserName(userName);
+        Set<DataProduct> dataProductList = organization.getDataProduct();
 
+        for (DataProduct dataProduct : dataProductList) {
+            if (dataProduct.getProductName().equalsIgnoreCase(productName)) {
+                dataProduct.setProductName(productName);
+                dataProduct.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
+                dataProduct.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
+                dataProduct.setPriceL(priceL.equals("") ? null : Double.valueOf(priceL));
+                dataProduct.setWeightS(weightS.equals("") ? null : Double.valueOf(weightS));
+                dataProduct.setWeightM(weightM.equals("") ? null : Double.valueOf(weightM));
+                dataProduct.setWeightL(weightL.equals("") ? null : Double.valueOf(weightL));
+                dataProduct.setDescription(description);
+
+                dataProductList.add(dataProduct);
+            }
+        }
+        organizationRepository.save(organization);
     }
 
     public Set<DataProduct> getDataProductList(final String userName) {
@@ -78,11 +92,15 @@ public class ProductService {
         return organization.getDataProduct();
     }
 
+    public List<Category> getCategoryList() {
+        return categoryRepository.findAll();
+    }
+
     private boolean isExistProductInOrganization(final String userName, final String productName) {
         Organization organization = organizationService.getOrganizationByUserName(userName);
-        Set<DataProduct> dataProductList = organization.getDataProduct();
+        Set<Product> productList = organization.getProductList();
 
-        return dataProductList.stream().anyMatch(d -> d.getProductName().equalsIgnoreCase(productName));
+        return productList.stream().anyMatch(d -> d.getProductName().equalsIgnoreCase(productName));
     }
 
     private Product getProduct(final String productName, final Category category) {
@@ -95,7 +113,6 @@ public class ProductService {
             product.setProductName(productName);
             product.setCategory(category);
         }
-
         return product;
     }
 

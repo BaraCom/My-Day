@@ -186,7 +186,7 @@
 
 
 /*------------------------------------- All products / Add product ------------------------------------------------*/
-.all-products-title, .add-product-title {
+.all-products-title, .add-product-title, .update-products-title, .add-category-title {
     background-color: #ff83031c;
     box-shadow: 1px 0px 5px black;
     color: wheat;
@@ -252,7 +252,7 @@
 
 
 /*--------------------------------------- Add product -----------------------------------------------*/
-.add-product-form, .update-product-form {
+.add-product-form, .update-product-form, .add-category-form {
     background-color: #0c546045;
     max-width: 700px;
     margin: 40px auto 40px auto;
@@ -304,13 +304,17 @@
 
 
 /*------------------------------------ Update Product ----------------------------------------------*/
-.update-product-btn, .add-product-btn {
+.update-product-btn, .add-product-btn, .add-category-btn {
     float: right;
     margin: -35px 10px 0px 10px;
 }
 
 .form-control {
     font-family: 'Play', sans-serif;
+}
+
+.update-input-change {
+    color: tomato;
 }
 
 /*---------------------------------------- @media ---------------------------------------------------*/
@@ -356,6 +360,10 @@
     .login-background {
         background: url("../img/logo/logo-bg(1200x950).jpg") no-repeat fixed center;
         background-size: cover;
+    }
+
+    .all-products-bg, .add-product-bg {
+        background: url("../img/bg/all-products-bg(1200x950).jpg") no-repeat fixed center;
     }
 }
 
