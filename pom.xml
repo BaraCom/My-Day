@@ -73,11 +73,11 @@
             <version>3.2.1</version>
         </dependency>
 
-        <!--<dependency>
+        <dependency>
             <groupId>org.flywaydb</groupId>
             <artifactId>flyway-core</artifactId>
-            <version>5.0.7</version>
-        </dependency>-->
+            <version>5.1.1</version>
+        </dependency>
     </dependencies>
     
     <build>
@@ -100,23 +100,6 @@
                     <target>1.8</target>
                 </configuration>
             </plugin>
-            <!--<plugin>
-                <groupId>org.flywaydb</groupId>
-                <artifactId>flyway-maven-plugin</artifactId>
-                <version>5.0.7</version>
-                <configuration>
-                    <url>jdbc:mysql://localhost:3306/online-shop</url>
-                    <user>root</user>
-                    <password>root</password>
-                </configuration>
-                <dependencies>
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql.version}</version>
-                    </dependency>
-                </dependencies>
-            </plugin>-->
         </plugins>
     </build>
 </project>

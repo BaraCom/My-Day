@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RequestMapping("/admin")
 public class AdminController {
-    private final ProductController productController;
+    /*private final ProductController productController;
 
     @GetMapping("/all_products")
     public String admin(final Model model, @AuthenticationPrincipal final User user) {
@@ -86,5 +86,5 @@ public class AdminController {
         productController.updateProductsChangePost(productName, priceS, priceM, priceL, weightS, weightM, weightL, description, user);
 
         return "redirect:/all_products";
-    }
+    }*/
 }

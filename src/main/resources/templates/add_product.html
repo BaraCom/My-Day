@@ -62,9 +62,9 @@
                 <div class="form-row mt-4">
                     <div class="add-product-col col-md-4 mb-3">
                         <label class="add-product-label" for="exampleFormControlSelect1">Select a category!</label>
-                        <select name="category" class="form-control" id="exampleFormControlSelect1" th:each="category : ${categoryList}">
+                        <select name="category" class="form-control" id="exampleFormControlSelect1">
                             <option>Choice...</option>
-                            <option th:text="${category.getCategory()}"/>
+                            <option th:each="category : ${categoryList}" th:text="${category.getCategory()}"/>
                         </select>
                     </div>
                 </div>

@@ -55,7 +55,8 @@ public class ProductService {
         productRepository.save(product);
     }
 
-    public void updateDataProduct(final String userName
+    public void updateDataProduct(final String oldProductName
+                                , final String userName
                                 , final String productName
                                 , final String priceS
                                 , final String priceM
@@ -67,9 +68,63 @@ public class ProductService {
 
         Organization organization = organizationService.getOrganizationByUserName(userName);
         Set<DataProduct> dataProductList = organization.getDataProduct();
+        Set<Product> productList = organization.getProductList();
 
-        for (DataProduct dataProduct : dataProductList) {
-            if (dataProduct.getProductName().equalsIgnoreCase(productName)) {
+        if (!isExistProductInOrganization(userName, productName)) {
+
+            productList.forEach(product -> {
+                if (product.getProductName().equalsIgnoreCase(oldProductName)) {
+                    Category category = product.getCategory();
+
+                    productList.add(getProduct(productName, category));
+//                    productList.remove(product);
+
+                    for (Product product1 : productList) {
+                        System.out.println(product1.getProductName() + " <<<- prod name: <<<- ");
+                    }
+                }
+            });
+
+            dataProductList.forEach(dataProduct -> {
+                if (dataProduct.getProductName().equalsIgnoreCase(oldProductName)) {
+                    dataProduct.setProductName(productName);
+                    dataProduct.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
+                    dataProduct.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
+                    dataProduct.setPriceL(priceL.equals("") ? null : Double.valueOf(priceL));
+                    dataProduct.setWeightS(weightS.equals("") ? null : Double.valueOf(weightS));
+                    dataProduct.setWeightM(weightM.equals("") ? null : Double.valueOf(weightM));
+                    dataProduct.setWeightL(weightL.equals("") ? null : Double.valueOf(weightL));
+                    dataProduct.setDescription(description);
+
+                    dataProductList.add(dataProduct);
+
+                    for (DataProduct product : dataProductList) {
+                        System.out.println(product.getProductName() + " ->>>  org name: ->>>" + product.getOrganization().getOrganizationName());
+                    }
+                }
+            });
+
+            organizationRepository.save(organization);
+        }
+
+        /*if (isExistProductInOrganization(userName, productName)) {
+            return;
+        } else {
+            for (Product product1 : productList) {
+                if (product1.getProductName().equalsIgnoreCase(oldProductName)) {
+                    Category category = product1.getCategory();
+
+                    Product product2 = getProduct(productName, category);
+
+                    productList.add(product2);
+
+//                                add(userName, productName, priceS, priceM, priceL, weightS, weightM, weightL, description, category.getCategory());
+                }
+            }
+        }*/
+
+        /*for (DataProduct dataProduct : dataProductList) {
+            if (dataProduct.getProductName().equalsIgnoreCase(oldProductName)) {
                 dataProduct.setProductName(productName);
                 dataProduct.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
                 dataProduct.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
@@ -80,12 +135,29 @@ public class ProductService {
                 dataProduct.setDescription(description);
 
                 dataProductList.add(dataProduct);
+
+
+
+                *//*Product changedProduct = productRepository.findByProductName(oldProductName);
+
+                List<Product> allProducts = productRepository.findAll();
+
+                for (Product product : allProducts) {
+                    if (product.getProductName().equalsIgnoreCase(productName)) {
+
+                    } else {
+
+                    }
+                }*//*
+//                changedProduct.setProductName(productName);
+
+//                productRepository.save(changedProduct);
             }
-        }
-        organizationRepository.save(organization);
+        }*/
+//        organizationRepository.save(organization);
     }
 
-    public Set<DataProduct> getDataProductList(final String userName) {
+    public Set<DataProduct> getDataProductList(final String userName) throws NullPointerException {
         User user = userRepository.findByUsername(userName);
         Organization organization = organizationRepository.findByLoginAndPassword(userName, user.getPassword());
 

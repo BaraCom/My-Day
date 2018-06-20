@@ -29,7 +29,7 @@ public class MainController {
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
 
-        if (userRepository.findAll().isEmpty()) {
+        /*if (userRepository.findAll().isEmpty()) {
             User user = new User();
             user.setUsername("superadmin");
             user.setPassword("92229222");
@@ -37,7 +37,7 @@ public class MainController {
             user.setRoles(Collections.singleton(Role.SUPER_ADMIN));
 
             userRepository.save(user);
-        }
+        }*/
 
         return "/main";
     }

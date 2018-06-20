@@ -24,6 +24,7 @@ public class ProductController {
     private final ProductService productService;
     private final IDataProductRepository dataProductRepository;
     private DataProduct dataProduct;
+    private String oldProductName;
 
     @GetMapping("/all_products")
     public String allProducts(final Model model, @AuthenticationPrincipal final User user) {
@@ -74,6 +75,7 @@ public class ProductController {
 
     @PostMapping("/update_product")
     public String updateProductPost(@RequestParam final String product) {
+        oldProductName = product;
         dataProduct = dataProductRepository.findByProductName(product);
 
         return "redirect:/update_product_change";
@@ -98,7 +100,7 @@ public class ProductController {
                                          , @RequestParam final String weightL
                                          , @RequestParam final String description
                                          , @AuthenticationPrincipal final User user) {
-        productService.updateDataProduct(user.getUsername(), productName, priceS, priceM, priceL, weightS, weightM, weightL, description);
+        productService.updateDataProduct(oldProductName, user.getUsername(), productName, priceS, priceM, priceL, weightS, weightM, weightL, description);
 
         return "redirect:/all_products";
     }

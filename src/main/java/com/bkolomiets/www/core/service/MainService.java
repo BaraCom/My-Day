@@ -45,10 +45,10 @@ public class MainService {
         Map<String, String> adminItems = new LinkedHashMap<>();
         adminItems.put("/", "Home");
         adminItems.put("/admin/about", "About");
-        adminItems.put("/admin/add_product", "Add product");
-        adminItems.put("/admin/all_products", "All products");
-        adminItems.put("/admin/update_product", "Update products list");
-        adminItems.put("/admin/delete_product", "Delete product");
+        adminItems.put("/add_product", "Add product");
+        adminItems.put("/all_products", "All products");
+        adminItems.put("/update_product", "Update products list");
+        adminItems.put("/delete_product", "Delete product");
 
         return adminItems;
     }
