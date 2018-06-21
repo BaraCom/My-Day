@@ -32,7 +32,7 @@ public class ProductController {
 
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
-        model.addAttribute("dataByProductList", productService.getDataProductList(userName));
+        model.addAttribute("dataByProductList", /*productService.getDataProductList(userName)*/ productService.getDataProductListByDb(userName));
 
         return "all_products";
     }
@@ -64,11 +64,11 @@ public class ProductController {
 
     @GetMapping("/update_product")
     public String updateProducts(final Model model, @AuthenticationPrincipal final User user) {
-        String currentPrincipalName = user.getUsername();
+        String userName = user.getUsername();
 
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
-        model.addAttribute("dataByProductList", productService.getDataProductList(currentPrincipalName));
+        model.addAttribute("dataByProductList", /*productService.getDataProductList(currentPrincipalName)*/ productService.getDataProductListByDb(userName));
 
         return "update_product";
     }

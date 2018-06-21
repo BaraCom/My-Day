@@ -18,7 +18,7 @@ import java.util.Set;
 @Setter
 public class Product {
 
-    public Product(String productName) {
+    public Product(String productName, Category category) {
         this.productName = productName;
     }
 
