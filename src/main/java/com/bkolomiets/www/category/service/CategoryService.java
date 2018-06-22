@@ -5,6 +5,7 @@ import com.bkolomiets.www.category.repository.ICategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 /**
  * @author Borislav Kolomiets
@@ -20,5 +21,9 @@ public class CategoryService {
         if (byCategory == null) {
             categoryRepository.save(new Category(category));
         }
+    }
+
+    public List<Category> getCategoryList() {
+        return categoryRepository.findAll();
     }
 }

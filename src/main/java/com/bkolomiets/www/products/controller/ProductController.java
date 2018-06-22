@@ -1,7 +1,9 @@
 package com.bkolomiets.www.products.controller;
 
+import com.bkolomiets.www.category.service.CategoryService;
 import com.bkolomiets.www.data_by_product.domain.DataProduct;
 import com.bkolomiets.www.data_by_product.repository.IDataProductRepository;
+import com.bkolomiets.www.data_by_product.service.DataProductService;
 import com.bkolomiets.www.products.service.ProductService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,8 +23,10 @@ import static com.bkolomiets.www.core.service.MainService.getNavBarByRole;
 @Controller
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductController {
-    private final ProductService productService;
     private final IDataProductRepository dataProductRepository;
+    private final ProductService productService;
+    private final DataProductService dataProductService;
+    private final CategoryService categoryService;
     private DataProduct dataProduct;
     private String oldProductName;
 
@@ -32,7 +36,7 @@ public class ProductController {
 
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
-        model.addAttribute("dataByProductList", /*productService.getDataProductList(userName)*/ productService.getDataProductListByDb(userName));
+        model.addAttribute("dataByProductList", dataProductService.getDataProductListByDb(userName));
 
         return "all_products";
     }
@@ -41,7 +45,7 @@ public class ProductController {
     public String addProduct(final Model model) {
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
-        model.addAttribute("categoryList", productService.getCategoryList());
+        model.addAttribute("categoryList", categoryService.getCategoryList());
 
         return "add_product";
     }
@@ -68,7 +72,7 @@ public class ProductController {
 
         model.addAttribute("navItems", getNavBarByRole());
         model.addAttribute("isLogged", getLogButtonByRole());
-        model.addAttribute("dataByProductList", /*productService.getDataProductList(currentPrincipalName)*/ productService.getDataProductListByDb(userName));
+        model.addAttribute("dataByProductList", dataProductService.getDataProductListByDb(userName));
 
         return "update_product";
     }
