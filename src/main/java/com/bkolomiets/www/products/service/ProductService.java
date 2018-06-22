@@ -116,6 +116,19 @@ public class ProductService {
         }
     }
 
+    public Long getDataProductId(final String userName, final String product) {
+        Organization organization = organizationService.getOrganizationByUserName(userName);
+
+        Set<DataProduct> dataProductList = dataProductRepository.findAllByOrganization(organization);
+
+        for (DataProduct dataProduct : dataProductList) {
+            if (dataProduct.getProductName().equalsIgnoreCase(product)) {
+                return dataProduct.getId();
+            }
+        }
+        return null;
+    }
+
     public boolean isExistProductInRepository(final String productName) {
         List<Product> allProducts = productRepository.findAll();
 

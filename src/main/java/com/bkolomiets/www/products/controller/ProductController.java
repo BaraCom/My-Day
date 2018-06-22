@@ -74,13 +74,11 @@ public class ProductController {
     }
 
     @PostMapping("/update_product")
-    public String updateProductPost(@RequestParam final String product) {
+    public String updateProductPost(@RequestParam final String product, @AuthenticationPrincipal final User user) {
         oldProductName = product;
-//        dataProduct = dataProductRepository.findByProductName(product);
 
-
-
-        dataProduct = dataProductRepository.getOne(14L);
+        Long dataProductId = productService.getDataProductId(user.getUsername(), product);
+        dataProduct = dataProductRepository.getOne(dataProductId);
 
         return "redirect:/update_product_change";
     }
