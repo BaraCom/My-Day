@@ -27,8 +27,8 @@ public class ProductService {
     private final IUserRepository userRepository;
     private final IProductRepository productRepository;
     private final ICategoryRepository categoryRepository;
-    private final OrganizationService organizationService;
     private final IDataProductRepository dataProductRepository;
+    private final OrganizationService organizationService;
 
     public void add(final String userName
                   , final String productName
@@ -73,61 +73,53 @@ public class ProductService {
         if (!isExistProductInOrganization(userName, productName)) {
             Set<Product> productList = organization.getProductList();
 
-            productList.forEach(product -> {
-                if (product.getProductName().equalsIgnoreCase(oldProductName)) {
-                    Category category = product.getCategory();
-
-//                    product = getProduct(productName, category);
-                    product.setProductName(productName);
-                    product.setCategory(category);
-
-                    Product byProductName = productRepository.findByProductName(productName);
-
-                    if (byProductName == null) {
-                        productRepository.save(new Product(productName, category));
+            if (isExistProductInRepository(productName)) {
+                productList.forEach(productByOrganization -> {
+                    if (productByOrganization.getProductName().equalsIgnoreCase(oldProductName)) {
+                        productList.remove(productByOrganization);
+                        productList.add(productRepository.findByProductName(productName));
                     }
+                });
+            } else {
+                productList.forEach(productByOrganization -> {
+                    if (productByOrganization.getProductName().equalsIgnoreCase(oldProductName)) {
+                        Product product = getProduct(productName, categoryRepository.getOne(1L));
 
+                        productList.add(product);
 
-//                    add(userName, productName, priceS, priceM, priceL, weightS, weightM, weightL, description, category.getCategory());
+                        productRepository.save(product);
 
+                        productList.remove(productByOrganization);
+                    }
+                });
+            }
 
+            DataProduct dataProductByOrganization = dataProductRepository.findDataProductByOrganizationAndProductName(organization, oldProductName);
 
-                    Set<DataProduct> dataProductList = organization.getDataProduct();
-
-                    dataProductList.forEach(dataProduct -> {
-                        if (dataProduct.getProductName().equalsIgnoreCase(oldProductName)) {
-                            dataProduct.setProductName(productName);
-                            dataProduct.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
-                            dataProduct.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
-                            dataProduct.setPriceL(priceL.equals("") ? null : Double.valueOf(priceL));
-                            dataProduct.setWeightS(weightS.equals("") ? null : Double.valueOf(weightS));
-                            dataProduct.setWeightM(weightM.equals("") ? null : Double.valueOf(weightM));
-                            dataProduct.setWeightL(weightL.equals("") ? null : Double.valueOf(weightL));
-                            dataProduct.setDescription(description);
-                            dataProduct.setOrganization(organization);
-
-                            organizationRepository.save(organization);
-                            dataProductRepository.save(dataProduct);
-                        }
-                    });
+            Set<DataProduct> dataProductList = organization.getDataProduct();
+            dataProductList.forEach(dataProductByList -> {
+                if (dataProductByList == dataProductByOrganization) {
+                    dataProductByList.setProductName(productName);
+                    dataProductByList.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
+                    dataProductByList.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
+                    dataProductByList.setPriceL(priceL.equals("") ? null : Double.valueOf(priceL));
+                    dataProductByList.setWeightS(weightS.equals("") ? null : Double.valueOf(weightS));
+                    dataProductByList.setWeightM(weightM.equals("") ? null : Double.valueOf(weightM));
+                    dataProductByList.setWeightL(weightL.equals("") ? null : Double.valueOf(weightL));
+                    dataProductByList.setDescription(description);
+                    dataProductByList.setOrganization(organization);
                 }
             });
 
-            /*Set<Product> productList = organization.getProductList();
-
-            Product product = productRepository.findByProductName(oldProductName);
-            productList.remove(product);
-
-            Set<DataProduct> dataProductList = organization.getDataProduct();
-
-            DataProduct dataProduct = dataProductRepository.findByProductName(oldProductName);
-            dataProductList.remove(dataProduct);
-
             organizationRepository.save(organization);
-            dataProductRepository.delete(dataProduct);
-
-            add(userName, productName, priceS, priceM, priceL, weightS, weightM, weightL, description, "Water (no gaz)");*/
+            dataProductRepository.save(dataProductByOrganization);
         }
+    }
+
+    public boolean isExistProductInRepository(final String productName) {
+        List<Product> allProducts = productRepository.findAll();
+
+        return allProducts.stream().anyMatch(product -> product.getProductName().equalsIgnoreCase(productName));
     }
 
     public Set<DataProduct> getDataProductList(final String userName) throws NullPointerException {
