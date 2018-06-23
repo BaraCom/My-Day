@@ -52,4 +52,33 @@ public class DataProductService {
 
         return dataProduct;
     }
+
+    public DataProduct updateDataProduct(final Set<DataProduct> dataProductList
+                                       , final DataProduct dataProductByOrganization
+                                       , final String productName
+                                       , final String priceS
+                                       , final String priceM
+                                       , final String priceL
+                                       , final String weightS
+                                       , final String weightM
+                                       , final String weightL
+                                       , final String description
+                                       , final Organization organization) {
+        DataProduct byDataProductList = dataProductList.stream().filter(dataProduct -> dataProduct == dataProductByOrganization).findFirst().get();
+        byDataProductList.setProductName(productName);
+        byDataProductList.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
+        byDataProductList.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
+        byDataProductList.setPriceL(priceL.equals("") ? null : Double.valueOf(priceL));
+        byDataProductList.setWeightS(weightS.equals("") ? null : Double.valueOf(weightS));
+        byDataProductList.setWeightM(weightM.equals("") ? null : Double.valueOf(weightM));
+        byDataProductList.setWeightL(weightL.equals("") ? null : Double.valueOf(weightL));
+        byDataProductList.setDescription(description);
+        byDataProductList.setOrganization(organization);
+
+        return byDataProductList;
+    }
+
+    public DataProduct getDataProductByOrganization(final Organization organization, final String oldProductName) {
+        return dataProductRepository.findDataProductByOrganizationAndProductName(organization, oldProductName);
+    }
 }

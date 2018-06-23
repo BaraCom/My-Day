@@ -2,8 +2,6 @@ package com.bkolomiets.www.products.service;
 
 import com.bkolomiets.www.category.domain.Category;
 import com.bkolomiets.www.category.repository.ICategoryRepository;
-import com.bkolomiets.www.core.repository.IUserRepository;
-import com.bkolomiets.www.core.user_role.User;
 import com.bkolomiets.www.data_by_product.domain.DataProduct;
 import com.bkolomiets.www.data_by_product.repository.IDataProductRepository;
 import com.bkolomiets.www.data_by_product.service.DataProductService;
@@ -25,7 +23,6 @@ import java.util.Set;
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 public class ProductService {
     private final IOrganizationRepository organizationRepository;
-    private final IUserRepository userRepository;
     private final IProductRepository productRepository;
     private final ICategoryRepository categoryRepository;
     private final IDataProductRepository dataProductRepository;
@@ -70,52 +67,36 @@ public class ProductService {
                                 , final String weightM
                                 , final String weightL
                                 , final String description) {
-
         Organization organization = organizationService.getOrganizationByUserName(userName);
 
         if (!isExistProductInOrganization(userName, productName)) {
             Set<Product> productList = organization.getProductList();
 
             if (isExistProductInRepository(productName)) {
-                productList.forEach(productByOrganization -> {
-                    if (productByOrganization.getProductName().equalsIgnoreCase(oldProductName)) {
-                        productList.remove(productByOrganization);
-                        productList.add(productRepository.findByProductName(productName));
-                    }
-                });
+                Product byProductList = productList.stream().filter(product -> product.getProductName().equalsIgnoreCase(oldProductName)).findFirst().get();
+                productList.add(productRepository.findByProductName(productName));
+                productList.remove(byProductList);
             } else {
-                productList.forEach(productByOrganization -> {
-                    if (productByOrganization.getProductName().equalsIgnoreCase(oldProductName)) {
-                        Product product = getProduct(productName, categoryRepository.getOne(1L));
+                Product byProductList = productList.stream().filter(product -> product.getProductName().equalsIgnoreCase(oldProductName)).findFirst().get();
+                Product newProduct = getProduct(productName, byProductList.getCategory());
+                productList.add(newProduct);
 
-                        productList.add(product);
+                productRepository.save(newProduct);
 
-                        productRepository.save(product);
-
-                        productList.remove(productByOrganization);
-                    }
-                });
+                productList.remove(byProductList);
             }
-
-            DataProduct dataProductByOrganization = dataProductRepository.findDataProductByOrganizationAndProductName(organization, oldProductName);
+            DataProduct dataProductByOrganization = dataProductService.getDataProductByOrganization(organization, oldProductName);
 
             Set<DataProduct> dataProductList = organization.getDataProduct();
-            dataProductList.forEach(dataProductByList -> {
-                if (dataProductByList == dataProductByOrganization) {
-                    dataProductByList.setProductName(productName);
-                    dataProductByList.setPriceS(priceS.equals("") ? null : Double.valueOf(priceS));
-                    dataProductByList.setPriceM(priceM.equals("") ? null : Double.valueOf(priceM));
-                    dataProductByList.setPriceL(priceL.equals("") ? null : Double.valueOf(priceL));
-                    dataProductByList.setWeightS(weightS.equals("") ? null : Double.valueOf(weightS));
-                    dataProductByList.setWeightM(weightM.equals("") ? null : Double.valueOf(weightM));
-                    dataProductByList.setWeightL(weightL.equals("") ? null : Double.valueOf(weightL));
-                    dataProductByList.setDescription(description);
-                    dataProductByList.setOrganization(organization);
-                }
-            });
+            dataProductService.updateDataProduct(dataProductList
+                                               , dataProductByOrganization
+                                               , productName
+                                               , priceS, priceM, priceL
+                                               , weightS, weightM, weightL
+                                               , description
+                                               , organization);
 
             organizationRepository.save(organization);
-            dataProductRepository.save(dataProductByOrganization);
         }
     }
 
